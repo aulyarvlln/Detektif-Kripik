@@ -1,0 +1,53 @@
+<div id="panel-tools" class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl relative">
+    <div class="flex justify-between items-center p-4 border-b border-gray-800">
+        <h2 class="text-white font-semibold tracking-wide">Tools</h2>
+        <button class="text-gray-400 hover:text-white">&times;</button>
+    </div>
+    <div class="p-6 flex-1 flex space-x-6 overflow-hidden">
+        <div class="flex-1 bg-[#12141a] border border-gray-700 rounded-lg p-5 flex flex-col">
+            <label class="block text-xs text-gray-500 mb-4">File terbuka</label>
+            <p class="text-gray-300 font-mono tracking-widest leading-relaxed">
+                QZJVA HNFTO LRKEM WBYXD PUCGI<br />
+                SNOAT MRVEL KZQHF JXDWB PYUCG ...
+            </p>
+        </div>
+        <div class="w-96 flex flex-col space-y-4 overflow-y-auto pr-2">
+            <h3 class="text-xl font-bold text-white mb-2">Tools</h3>
+            <div class="flex border border-gray-700 rounded-lg overflow-hidden">
+                <button
+                    class="flex-1 py-2 text-sm font-semibold border-2 border-yellow-500 text-yellow-500 bg-[#1e2025]">
+                    Enkripsi
+                </button>
+                <button class="flex-1 py-2 text-sm font-semibold text-gray-400 hover:text-white">
+                    Dekripsi
+                </button>
+            </div>
+            <div>
+                <label class="block text-xs text-gray-500 mb-1">Input teks</label>
+                <textarea
+                    class="w-full h-20 bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500 resize-none"></textarea>
+            </div>
+            <div>
+                <label class="block text-xs text-gray-500 mb-1">Metode</label>
+                <select
+                    class="w-full bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500 appearance-none">
+                    <option>AES-256-GCM</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs text-gray-500 mb-1">Key</label>
+                <input type="text" placeholder="masukkan key"
+                    class="w-full bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500" />
+            </div>
+            <button class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold py-3 rounded-lg shadow-lg w-full mt-2">
+                Proses
+            </button>
+            <div>
+                <label class="block text-xs text-gray-500 mb-1 mt-2">Hasil</label>
+                <textarea placeholder="hasil muncul di sini"
+                    class="w-full h-16 bg-[#12141a] border border-gray-700 rounded-lg p-3 text-gray-400 focus:outline-none resize-none"
+                    readonly></textarea>
+            </div>
+        </div>
+    </div>
+</div>

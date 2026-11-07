@@ -1,51 +1,413 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Detektif Kripik</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d0f12;
+      color: #e8e6e1;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1000px;
+      min-height: 620px;
+      background: #14161a;
+      border: 1px solid #2b2f36;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      border-bottom: 1px solid #2b2f36;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .top span {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 400;
+      color: #9aa0a6;
+    }
+
+    .main {
+      flex: 1;
+      padding: 55px 45px;
+    }
+
+    .heading {
+      margin-bottom: 35px;
+    }
+
+    .heading h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .heading p {
+      color: #9aa0a6;
+      font-size: 13px;
+    }
+
+    .accent {
+      color: #e0a84b;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 330px;
+      padding: 20px;
+      background: #1d2026;
+      border: 1px solid #2b2f36;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .card.active {
+      border-color: #e0a84b;
+      box-shadow: 0 0 15px rgba(224, 168, 75, 0.08);
+    }
+
+    .step {
+      color: #9aa0a6;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+    }
+
+    .card h2 {
+      font-size: 19px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #7fd1a0;
+      font-size: 13px;
+    }
+
+    .status-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(127, 209, 160, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .description {
+      color: #9aa0a6;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    label {
+      font-size: 12px;
+      color: #c9ccd1;
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      padding: 0 12px;
+      background: #14161a;
+      border: 1px solid #3a3f48;
+      border-radius: 7px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #e0a84b;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 45px;
+    }
+
+    .toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: #9aa0a6;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .btn {
+      width: 100%;
+      height: 45px;
+      border: none;
+      border-radius: 7px;
+      background: #e0a84b;
+      color: #14161a;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #f0bc65;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      min-height: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #ff8a80;
+    }
+
+    .message.success {
+      color: #7fd1a0;
+    }
+
+    .footer {
+      padding: 16px;
+      border-top: 1px solid #2b2f36;
+      text-align: center;
+      font-size: 11px;
+      color: #777e88;
+    }
+
+    @media (max-width: 750px) {
+      body {
+        padding: 15px;
+      }
+
+      .main {
+        padding: 30px 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 240px;
+      }
+
+      .top span {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h2>Autentikasi Password</h2>
-  <p>Masukkan password untuk melanjutkan permainan.</p>
+  <div class="app">
 
-  <form id="loginForm">
-    <input
-      type="password"
-      id="password"
-      placeholder="Masukkan password"
-      required
-    >
-    <button type="submit">Masuk</button>
-  </form>
+    <header class="top">
+      <div>DETEKTIF <span class="accent">KRIPIK</span></div>
+      <span>Kasus: Mr P.S.</span>
+    </header>
 
-  <p id="message"></p>
+    <main class="main">
+
+      <section class="heading">
+        <h1>
+          Detektif Kripik:
+          <span class="accent">Warisan Sang Detektif</span>
+        </h1>
+        <p>
+          Tiga lapis keamanan sebelum berkas Hendra dapat dibuka.
+        </p>
+      </section>
+
+      <section class="cards">
+
+        <!-- LAPIS 1 -->
+        <div class="card">
+          <div class="step">LANGKAH 01</div>
+          <h2>Dongle</h2>
+
+          <div class="status">
+            <span class="status-icon">✓</span>
+            Dongle berhasil diverifikasi
+          </div>
+
+          <p class="description">
+            Perangkat penyimpanan eksternal telah dikenali
+            dan kunci digital berhasil diverifikasi
+            menggunakan tanda tangan Ed25519.
+          </p>
+        </div>
+
+        <!-- LAPIS 2 -->
+        <div class="card">
+          <div class="step">LANGKAH 02</div>
+          <h2>Sidik Jari</h2>
+
+          <div class="status">
+            <span class="status-icon">✓</span>
+            Identitas berhasil diverifikasi
+          </div>
+
+          <p class="description">
+            Autentikasi biometrik telah berhasil dilakukan
+            melalui Windows Biometric Framework
+            menggunakan sensor sidik jari perangkat.
+          </p>
+        </div>
+
+        <!-- LAPIS 3 -->
+        <div class="card active">
+          <div class="step accent">LANGKAH 03</div>
+          <h2>Login Password</h2>
+
+          <p class="description">
+            Masukkan password bersama untuk melanjutkan
+            ke dashboard Detektif Kripik.
+          </p>
+
+          <form class="login-form" id="loginForm">
+
+            <label for="password">Password</label>
+
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="toggle"
+                id="togglePassword"
+              >
+                Lihat
+              </button>
+            </div>
+
+            <div class="message" id="message"></div>
+
+            <button type="submit" class="btn" id="loginButton">
+              Masuk ke Aplikasi →
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      DETEKTIF KRIPIK · SECURE ACCESS SYSTEM
+    </footer>
+
+  </div>
 
   <script>
     const form = document.getElementById('loginForm');
     const passwordInput = document.getElementById('password');
     const message = document.getElementById('message');
+    const loginButton = document.getElementById('loginButton');
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+
+      passwordInput.type = isPassword ? 'text' : 'password';
+      togglePassword.textContent = isPassword ? 'Sembunyikan' : 'Lihat';
+    });
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const result = await window.authAPI.verifyPassword(
-        passwordInput.value
-      );
+      const password = passwordInput.value;
 
-      message.textContent = result.message;
+      if (!password.trim()) {
+        message.textContent = 'Password tidak boleh kosong.';
+        return;
+      }
 
-      if (result.valid) {
+      loginButton.disabled = true;
+      loginButton.textContent = 'Memverifikasi...';
+      message.textContent = '';
+      message.className = 'message';
+
+      try {
+        const result = await window.authAPI.verifyPassword(password);
+
+        if (!result.valid) {
+          message.textContent = result.message || 'Password salah.';
+          passwordInput.value = '';
+          passwordInput.focus();
+          return;
+        }
+
+        message.textContent = 'Password benar. Membuka aplikasi...';
+        message.className = 'message success';
+
         const opened = await window.authAPI.openGame();
 
         if (!opened) {
-            message.textContent = 'Gagal membuka permainan.';
+          message.textContent = 'Gagal membuka aplikasi. Silakan coba lagi.';
+          message.className = 'message';
         }
-    }
 
-      passwordInput.value = '';
+      } catch (error) {
+        console.error(error);
+        message.textContent = 'Terjadi kesalahan saat autentikasi.';
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = 'Masuk ke Aplikasi →';
+      }
     });
   </script>
+
 </body>
 </html>
+

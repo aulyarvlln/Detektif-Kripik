@@ -1,12 +1,20 @@
-const { verifyPassword } = require('./src/crypto/password');
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const { execFile, spawn } = require('child_process');
 const { promisify } = require('util');
+const fs = require("fs/promises");
 
 const execFileAsync = promisify(execFile);
 
 const { verifyDongle } = require('./src/crypto/dongle');
+const { verifyPassword } = require('./src/crypto/password');
+
+const allowedPages = new Set([
+    "surat.html",
+    "tools.html",
+    "add-file.html",
+    "rantai-bukti.html"
+]);
 
 const DOTNET_DLL =
   'C:\\Users\\ACER\\DongleTest\\bin\\Release\\net10.0\\DongleTest.dll';
@@ -16,6 +24,7 @@ const FINGERPRINT_EXE =
 
 let loginWindow = null;
 let gameWindow = null;
+let passwordAuthenticated = false;
 
 async function checkDongle() {
   try {
@@ -134,17 +143,22 @@ function showErrorAndQuit(message) {
   app.quit();
 }
 
+
 function createLoginWindow() {
   loginWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    resizable: false,
+    width: 1200,
+    height: 800,
+    minWidth: 1000,
+    minHeight: 650,
+    center: true,
+    resizable: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
+
   loginWindow.loadFile('login.html');
 }
 
@@ -162,7 +176,17 @@ function createGameWindow() {
   gameWindow.loadFile('index.html');
 }
 
-ipcMain.handle('password:verify', async (event, password) => {
+
+
+ipcMain.handle('password:verify', (event, password) => {
+  if (!loginWindow ||
+      event.sender !== loginWindow.webContents) {
+    return {
+      valid: false,
+      message: 'Permintaan autentikasi tidak valid.'
+    };
+  }
+
   if (typeof password !== 'string' || !password) {
     return {
       valid: false,
@@ -171,6 +195,8 @@ ipcMain.handle('password:verify', async (event, password) => {
   }
 
   const valid = verifyPassword(password);
+
+  passwordAuthenticated = valid;
 
   return {
     valid,
@@ -181,9 +207,15 @@ ipcMain.handle('password:verify', async (event, password) => {
 });
 
 ipcMain.handle('game:open', (event) => {
-  if (loginWindow && event.sender !== loginWindow.webContents) {
+  if (
+    !passwordAuthenticated ||
+    !loginWindow ||
+    event.sender !== loginWindow.webContents
+  ) {
     return false;
   }
+
+  passwordAuthenticated = false;
 
   createGameWindow();
 
@@ -195,12 +227,37 @@ ipcMain.handle('game:open', (event) => {
   return true;
 });
 
+ipcMain.handle("page:load", async (_event, fileName) => {
+
+    if (
+        typeof fileName !== "string" ||
+        !allowedPages.has(fileName)
+    ) {
+        throw new Error("Nama halaman tidak diizinkan.");
+    }
+
+    const filePath = path.join(
+        __dirname,
+        "pages",
+        fileName
+    );
+
+    return fs.readFile(filePath, "utf8");
+
+});
+
 app.whenReady().then(async () => {
   const dongle = await checkDongle();
-  if (!dongle.valid) return showErrorAndQuit(dongle.message);
+
+  if (!dongle.valid) {
+    return showErrorAndQuit(dongle.message);
+  }
 
   const fp = await checkFingerprint();
-  if (!fp.valid) return showErrorAndQuit(fp.message);
+
+  if (!fp.valid) {
+    return showErrorAndQuit(fp.message);
+  }
 
   createLoginWindow();
 });

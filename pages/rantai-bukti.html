@@ -1,0 +1,84 @@
+<div id="panel-rantai" class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl relative">
+    <div class="flex justify-between items-center p-4 border-b border-gray-800">
+        <h2 class="text-white font-semibold tracking-wide">Rantai Bukti</h2>
+        <button class="text-gray-400 hover:text-white">&times;</button>
+    </div>
+    <div class="p-6 flex-1 overflow-y-auto">
+        <h3 class="text-2xl font-bold text-white mb-2">Rantai Bukti</h3>
+        <p class="text-gray-400 text-sm mb-8">
+            Setiap bukti yang ditemukan menjadi blok baru. Hash dihitung
+            dengan SHA-256 dari data dan hash blok sebelumnya.
+        </p>
+
+        <div class="flex items-center space-x-3 mb-8 overflow-x-auto pb-4">
+            <!-- Blok 0 -->
+            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4 min-w-[200px]">
+                <div class="font-bold text-white mb-1">Blok #0</div>
+                <div class="text-sm text-gray-300 mb-4">
+                    Genesis (rantai Hendra)
+                </div>
+                <div class="text-xs text-gray-500">hash</div>
+                <div class="text-xs text-gray-400 font-mono mb-3">
+                    9f2c...41ab
+                </div>
+                <div class="text-green-500 text-sm flex items-center">
+                    <span class="mr-2">&check;</span> Valid
+                </div>
+            </div>
+            <span class="text-gray-600 font-bold">&rarr;</span>
+
+            <!-- Blok 1 -->
+            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4 min-w-[200px]">
+                <div class="font-bold text-white mb-1">Blok #1</div>
+                <div class="text-sm text-gray-300 mb-4">Surat Hendra</div>
+                <div class="text-xs text-gray-500">hash</div>
+                <div class="text-xs text-gray-400 font-mono mb-3">
+                    c07d...e3b2
+                </div>
+                <div class="text-green-500 text-sm flex items-center">
+                    <span class="mr-2">&check;</span> Valid
+                </div>
+            </div>
+            <span class="text-gray-600 font-bold">&rarr;</span>
+
+            <!-- Blok 2 -->
+            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4 min-w-[200px]">
+                <div class="font-bold text-white mb-1">Blok #2</div>
+                <div class="text-sm text-gray-300 mb-4">Rekaman</div>
+                <div class="text-xs text-gray-500">hash</div>
+                <div class="text-xs text-gray-400 font-mono mb-3">
+                    5a19...7d0c
+                </div>
+                <div class="text-green-500 text-sm flex items-center">
+                    <span class="mr-2">&check;</span> Valid
+                </div>
+            </div>
+            <span class="text-gray-600 font-bold">&rarr;</span>
+
+            <!-- Blok 3 -->
+            <div class="bg-[#2a1a1c] border-2 border-red-900 rounded-lg p-4 min-w-[200px]">
+                <div class="font-bold text-red-300 mb-1">Blok #3</div>
+                <div class="text-sm text-gray-300 mb-4">Buku kas korban</div>
+                <div class="text-xs text-gray-500">hash</div>
+                <div class="text-xs text-gray-400 font-mono mb-3">
+                    e8b4...02f6
+                </div>
+                <div class="text-red-400 text-sm font-semibold">
+                    Tidak cocok
+                </div>
+            </div>
+        </div>
+
+        <button
+            class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg shadow-lg mb-6 transition-transform active:scale-95">
+            Verifikasi Rantai
+        </button>
+
+        <div class="border border-red-800 bg-[#1c1214] rounded-lg p-4">
+            <p class="text-gray-300">
+                <span class="text-red-400 font-bold">Blok #3 tidak valid.</span>
+                Catatan buku kas pernah diubah oleh akun dimas.p.
+            </p>
+        </div>
+    </div>
+</div>

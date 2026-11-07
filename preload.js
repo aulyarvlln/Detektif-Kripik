@@ -12,3 +12,10 @@ contextBridge.exposeInMainWorld('authAPI', {
   openGame: () =>
     ipcRenderer.invoke('game:open')
 });
+
+contextBridge.exposeInMainWorld("pageAPI", {
+
+    loadPage: (fileName) =>
+        ipcRenderer.invoke("page:load", fileName)
+
+});
