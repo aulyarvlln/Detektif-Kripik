@@ -16,6 +16,9 @@ const allowedPages = new Set([
     "rantai-bukti.html"
 ]);
 
+const DOTNET_EXE =
+  'C:\\Program Files\\dotnet\\dotnet.exe';
+
 const DOTNET_DLL =
   'C:\\Users\\Kripto\\DongleTest\\bin\\Release\\net10.0\\DongleTest.dll';
 
@@ -29,7 +32,7 @@ let passwordAuthenticated = false;
 async function checkDongle() {
   try {
     const { stdout } = await execFileAsync(
-      'dotnet',
+      DOTNET_EXE,
       [DOTNET_DLL],
       { timeout: 10000 }
     );
