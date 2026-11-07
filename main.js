@@ -1,5 +1,5 @@
-
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { verifyPassword } = require('./src/crypto/password');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const { execFile, spawn } = require('child_process');
 const { promisify } = require('util');
@@ -158,8 +158,42 @@ function createGameWindow() {
       nodeIntegration: false
     }
   });
+
   gameWindow.loadFile('index.html');
 }
+
+ipcMain.handle('password:verify', async (event, password) => {
+  if (typeof password !== 'string' || !password) {
+    return {
+      valid: false,
+      message: 'Password tidak boleh kosong.'
+    };
+  }
+
+  const valid = verifyPassword(password);
+
+  return {
+    valid,
+    message: valid
+      ? 'Password benar.'
+      : 'Password salah.'
+  };
+});
+
+ipcMain.handle('game:open', (event) => {
+  if (loginWindow && event.sender !== loginWindow.webContents) {
+    return false;
+  }
+
+  createGameWindow();
+
+  if (loginWindow) {
+    loginWindow.close();
+    loginWindow = null;
+  }
+
+  return true;
+});
 
 app.whenReady().then(async () => {
   const dongle = await checkDongle();
@@ -168,7 +202,5 @@ app.whenReady().then(async () => {
   const fp = await checkFingerprint();
   if (!fp.valid) return showErrorAndQuit(fp.message);
 
-  // tahap password: tampilkan login.html dulu, validasi lewat IPC di main.js
-  // game (index.html) HANYA di-load setelah password valid
-  createGameWindow(); // sementara, sampai tahap password dibuat
+  createLoginWindow();
 });

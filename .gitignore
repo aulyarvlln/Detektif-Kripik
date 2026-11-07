@@ -1,2 +1,3 @@
 node_modules/
 tools/keys/private.pem
+src/crypto/password.hash

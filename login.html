@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Detektif Kripik</title>
+</head>
+<body>
+  <h2>Autentikasi Password</h2>
+  <p>Masukkan password untuk melanjutkan permainan.</p>
+
+  <form id="loginForm">
+    <input
+      type="password"
+      id="password"
+      placeholder="Masukkan password"
+      required
+    >
+    <button type="submit">Masuk</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const result = await window.authAPI.verifyPassword(
+        passwordInput.value
+      );
+
+      message.textContent = result.message;
+
+      if (result.valid) {
+        const opened = await window.authAPI.openGame();
+
+        if (!opened) {
+            message.textContent = 'Gagal membuka permainan.';
+        }
+    }
+
+      passwordInput.value = '';
+    });
+  </script>
+</body>
+</html>
