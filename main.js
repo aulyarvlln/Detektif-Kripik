@@ -17,10 +17,10 @@ const allowedPages = new Set([
 ]);
 
 const DOTNET_DLL =
-  'C:\\Users\\ACER\\DongleTest\\bin\\Release\\net10.0\\DongleTest.dll';
+  'C:\\Users\\Kripto\\DongleTest\\bin\\Release\\net10.0\\DongleTest.dll';
 
 const FINGERPRINT_EXE =
-  'C:\\Users\\ACER\\FingerprintTest\\bin\\Release\\net10.0-windows\\win-x64\\publish\\FingerprintTest.exe';
+  'C:\\Users\\Kripto\\FingerprintTest\\bin\\Release\\net10.0-windows\\win-x64\\publish\\FingerprintTest.exe';
 
 let loginWindow = null;
 let gameWindow = null;
