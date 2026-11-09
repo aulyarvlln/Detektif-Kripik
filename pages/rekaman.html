@@ -1,0 +1,45 @@
+
+<div class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl">
+    <div class="p-5 border-b border-gray-800">
+        <h2 class="text-white font-semibold tracking-wide">REKAMAN RAHASIA</h2>
+        <p class="text-gray-500 text-xs mt-1">Barang Bukti Audio — DK-014</p>
+    </div>
+
+    <div class="p-6 space-y-5">
+        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
+            <h3 class="text-yellow-500 font-semibold mb-2">Akses Rekaman</h3>
+            <p class="text-gray-400 text-sm mb-4">
+                Masukkan password yang ditemukan dari surat Mr. PS.
+            </p>
+            <div class="flex gap-3">
+                <input id="password-rekaman" type="password"
+                    placeholder="Password rekaman"
+                    class="flex-1 min-w-0 bg-[#1a1c23] border border-gray-700 rounded-lg p-3 text-white">
+                <button id="btn-buka-rekaman"
+                    class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold px-5 rounded-lg">
+                    Buka
+                </button>
+            </div>
+            <p id="status-rekaman" class="text-sm text-gray-400 mt-3">
+                Rekaman masih terkunci.
+            </p>
+        </div>
+
+        <div id="panel-pemutar" class="hidden bg-[#12141a] border border-gray-700 rounded-lg p-5">
+            <h3 class="text-yellow-500 font-semibold mb-3">Rekaman Mr. PS</h3>
+            <audio id="pemutar-rekaman" controls class="w-full"></audio>
+            <p class="text-gray-500 text-xs mt-3">
+                Dengarkan rekaman sampai selesai sebelum mengekstrak pesan tersembunyi.
+            </p>
+        </div>
+
+        <div id="panel-ekstraksi" class="hidden bg-[#12141a] border border-gray-700 rounded-lg p-5">
+            <h3 class="text-yellow-500 font-semibold mb-3">Pesan Tersembunyi</h3>
+            <button id="btn-ekstrak-audio"
+                class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold px-5 py-3 rounded-lg">
+                Ekstrak Pesan Audio
+            </button>
+            <p id="hasil-ekstraksi" class="text-gray-300 font-mono mt-4 break-all"></p>
+        </div>
+    </div>
+</div>

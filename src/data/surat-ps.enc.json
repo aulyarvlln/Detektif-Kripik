@@ -1,0 +1,17 @@
+{
+  "algorithm": "SUPER-ENCRYPTION",
+  "layers": [
+    "CAESAR",
+    "VIGENERE",
+    "AES-256-GCM"
+  ],
+  "encryptedData": {
+    "algorithm": "AES-256-GCM",
+    "kdf": "PBKDF2-SHA256",
+    "iterations": 210000,
+    "salt": "55139420ff990074a145fec6b0c9a87b",
+    "iv": "35fa685771e2fc1a06903742",
+    "authTag": "7eb2f043920b38fabf6ec0c46f51923c",
+    "ciphertext": "B4xeU3lay6/m+OVkUXBxwS2P37oSjak342UEymMCaEDdbq79RCyy7LunLfcQUMhieO4kt0DhXjCNh28jp8CnbzdnHGphs17xE1aRzguWbkBzOZZvXaUi04fyG4j+/l4Fq1ZwJxyGPCMy+C+UZSn7FYgGZLcEi7uQs9ds7/PG4inT9VbXdZegjpafz2d2/xUZcW3/c3NZKSBKXl8E1c/cOlI3nnf/TchmU15DGPFiaUA4asuzzbhYb9VI3Cav/os19yAKYROkJgYY0KOBOGuY4u0ocyIHHfFpxmuWEy4R/rmMqrjJ+6FSNqEvUj39cjfTY/lVuQwU9Q=="
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "chain": [
+    {
+      "index": 0,
+      "timestamp": "2026-11-09T19:38:29.382Z",
+      "evidence": {
+        "id": "4124f49b-a574-4b3e-9d0b-aa4cb8e297be",
+        "fileName": "Rekaman-Rahasia.wav",
+        "filePath": "assets\\audio\\Rekaman-Rahasia.wav",
+        "fileHash": "549177fa3bf2173c5aa5c5db4f5427c3a6cacb267d8522b725bc98f3e1d7ad89",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "0",
+      "hash": "6466f307831fd05e70643b9a70b7d4d8e472bd6567a2352e50d9899783e7e33a"
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-11-09T19:39:14.471Z",
+      "evidence": {
+        "id": "8cffe64c-088d-40a2-9336-57fbeb8b140d",
+        "fileName": "Surat_PS.txt",
+        "filePath": "assets\\documents\\Surat_PS.txt",
+        "fileHash": "eea08054ece009a85b00a35cb262deeae352da12badd58fe3aa5dfddb446a6df",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "6466f307831fd05e70643b9a70b7d4d8e472bd6567a2352e50d9899783e7e33a",
+      "hash": "e8c538f2a05404e8c87fc81b2ed076970cb2e807c27d199017de3ed021214fb2"
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-11-09T19:43:57.699Z",
+      "evidence": {
+        "id": "8f6beaf9-596f-4ab4-89ab-63767bf44c32",
+        "fileName": "dossier.enc.json",
+        "filePath": "src\\data\\dossier.enc.json",
+        "fileHash": "530e4a12448480e3d69548ed7dddc0704796dffcdb8a03ecc53cc69caac2bac5",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "e8c538f2a05404e8c87fc81b2ed076970cb2e807c27d199017de3ed021214fb2",
+      "hash": "b00939ff729f321d275b22851a118fb80842af98508d0a80f55c93fe9e1f09f2"
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-11-09T19:44:45.723Z",
+      "evidence": {
+        "id": "02e3aaee-f45f-4ae2-bbbe-43381c389f2a",
+        "fileName": "Foto_TKP.png",
+        "filePath": "assets\\images\\Foto_TKP.png",
+        "fileHash": "05b330c9d5fec4c69aa568fafc50114a96d01775ebb226b480a148e7bf277d13",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "b00939ff729f321d275b22851a118fb80842af98508d0a80f55c93fe9e1f09f2",
+      "hash": "a51271e2d49fc4025fd0f3ff844a9986eb422dcf4e2e626d236e9eff9c2ec29e"
+    }
+  ]
+}

@@ -1,3 +1,20 @@
 node_modules/
 tools/keys/private.pem
 src/crypto/password.hash
+
+# Foto hasil fitur Add File (lokal)
+assets/images/hasil-add/*
+!assets/images/hasil-add/.gitkeep
+
+# Backup foto asli
+tools/backup-foto-asli/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Temporary files
+*.tmp
+*.bak
+*.log

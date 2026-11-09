@@ -1,0 +1,42 @@
+{
+  "case": {
+    "title": "Kematian Mr. PS",
+    "date": "14 November 2026",
+    "location": "Bogor",
+    "victim": "Mr. PS"
+  },
+  "suspects": [
+    {
+      "id": 1,
+      "name": "Mega",
+      "relationship": "Rival politik",
+      "description": "Memiliki hubungan buruk dengan Mr. PS karena persaingan politik.",
+      "lastMeeting": "Dua hari sebelum kejadian",
+      "photo": "Mega.png"
+    },
+    {
+      "id": 2,
+      "name": "Ines",
+      "relationship": "Rekan bisnis",
+      "description": "Memiliki hubungan baik dengan Mr. PS dan dikenal dekat dengan keluarganya.",
+      "lastMeeting": "Saat ulang tahun putri Mr. PS",
+      "photo": "Ines.png"
+    },
+    {
+      "id": 3,
+      "name": "Teddy",
+      "relationship": "Asisten pribadi",
+      "description": "Merupakan orang kepercayaan Mr. PS dan memiliki hubungan sangat dekat dengannya.",
+      "lastMeeting": "Belum diketahui secara pasti",
+      "photo": "Teddy.png"
+    },
+    {
+      "id": 4,
+      "name": "Jar",
+      "relationship": "Rekan bisnis",
+      "description": "Pernah mengalami perselisihan kecil dengan Mr. PS.",
+      "lastMeeting": "Satu bulan sebelum kejadian",
+      "photo": "Jar.png"
+    }
+  ]
+}
