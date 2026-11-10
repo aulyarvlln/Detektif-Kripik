@@ -4,12 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Detektif Kripik</title>
-
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -72,44 +82,68 @@
       color: #e0a84b;
     }
 
+    /* KARTU AUTENTIKASI */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+      align-items: start;
     }
 
     .card {
-      min-height: 330px;
+      min-height: 320px;
       padding: 20px;
       background: #1d2026;
       border: 1px solid #2b2f36;
       border-radius: 10px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      align-items: center;
+      gap: 10px;
     }
 
     .card.active {
+      min-height: 0;
       border-color: #e0a84b;
       box-shadow: 0 0 15px rgba(224, 168, 75, 0.08);
     }
 
+    /* NOMOR TAHAPAN */
     .step {
+      align-self: flex-start;
       color: #9aa0a6;
       font-size: 11px;
       letter-spacing: 1.5px;
     }
 
-    .card h2 {
-      font-size: 19px;
+    .card.active .step {
+      color: #e0a84b;
     }
 
+    /* IKON */
+    .card .card-icon {
+      font-size: 90px;
+      line-height: 1;
+      color: #e0a84b;
+      margin: 12px auto;
+    }
+
+    /* JUDUL */
+    .card h2 {
+      font-size: 19px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    /* STATUS VERIFIKASI */
     .status {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       color: #7fd1a0;
       font-size: 13px;
+      text-align: center;
     }
 
     .status-icon {
@@ -120,24 +154,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
+    /* DESKRIPSI */
     .description {
       color: #9aa0a6;
       font-size: 12px;
       line-height: 1.7;
+      text-align: center;
     }
 
+    /* FORM LOGIN */
     .login-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-top: auto;
+      width: 100%;
     }
 
     label {
       font-size: 12px;
       color: #c9ccd1;
+      text-align: left;
     }
 
     input {
@@ -158,6 +198,7 @@
 
     .password-wrap {
       position: relative;
+      width: 100%;
     }
 
     .password-wrap input {
@@ -198,6 +239,7 @@
       cursor: not-allowed;
     }
 
+    /* PESAN */
     .message {
       min-height: 18px;
       font-size: 12px;
@@ -209,6 +251,7 @@
       color: #7fd1a0;
     }
 
+    /* FOOTER */
     .footer {
       padding: 16px;
       border-top: 1px solid #2b2f36;
@@ -217,6 +260,7 @@
       color: #777e88;
     }
 
+    /* RESPONSIVE */
     @media (max-width: 750px) {
       body {
         padding: 15px;
@@ -232,6 +276,10 @@
 
       .card {
         min-height: 240px;
+      }
+
+      .card.active {
+        min-height: 0;
       }
 
       .top span {
@@ -257,89 +305,74 @@
           <span class="accent">Warisan Sang Detektif</span>
         </h1>
         <p>
-          Tiga lapis keamanan sebelum berkas Hendra dapat dibuka.
+          Lewati tiga lapis keamanan sebelum berkas Mr PS dapat dibuka.
         </p>
       </section>
 
       <section class="cards">
-
+      
         <!-- LAPIS 1 -->
         <div class="card">
-          <div class="step">LANGKAH 01</div>
+          <div class="step">01/03</div>
+      
+          <i class="bi bi-usb-drive-fill card-icon"></i>
+      
           <h2>Dongle</h2>
-
+      
           <div class="status">
             <span class="status-icon">✓</span>
             Dongle berhasil diverifikasi
           </div>
-
-          <p class="description">
-            Perangkat penyimpanan eksternal telah dikenali
-            dan kunci digital berhasil diverifikasi
-            menggunakan tanda tangan Ed25519.
-          </p>
         </div>
-
+      
         <!-- LAPIS 2 -->
         <div class="card">
-          <div class="step">LANGKAH 02</div>
+          <div class="step">02/03</div>
+      
+          <i class="bi bi-fingerprint card-icon"></i>
+      
           <h2>Sidik Jari</h2>
-
+      
           <div class="status">
             <span class="status-icon">✓</span>
             Identitas berhasil diverifikasi
           </div>
-
-          <p class="description">
-            Autentikasi biometrik telah berhasil dilakukan
-            melalui Windows Biometric Framework
-            menggunakan sensor sidik jari perangkat.
-          </p>
         </div>
-
+      
         <!-- LAPIS 3 -->
         <div class="card active">
-          <div class="step accent">LANGKAH 03</div>
-          <h2>Login Password</h2>
+          <div class="step">03/03</div>
 
+          <h2>Login Password</h2>
+      
           <p class="description">
-            Masukkan password bersama untuk melanjutkan
+            Masukkan password untuk melanjutkan
             ke dashboard Detektif Kripik.
           </p>
-
+      
           <form class="login-form" id="loginForm">
-
+      
             <label for="password">Password</label>
-
+      
             <div class="password-wrap">
-              <input
-                type="password"
-                id="password"
-                placeholder="Masukkan password"
-                autocomplete="current-password"
-                required
-              >
-
-              <button
-                type="button"
-                class="toggle"
-                id="togglePassword"
-              >
+              <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password" required>
+      
+              <button type="button" class="toggle" id="togglePassword">
                 Lihat
               </button>
             </div>
-
+      
             <div class="message" id="message"></div>
-
+      
             <button type="submit" class="btn" id="loginButton">
-              Masuk ke Aplikasi →
+              Masuk
             </button>
-
+      
           </form>
-
         </div>
-
+      
       </section>
+
 
     </main>
 

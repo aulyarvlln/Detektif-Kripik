@@ -1,11 +1,11 @@
 # DETEKTIF KRIPIK
 ## BERKAS INVESTIGASI RAHASIA
 
-**KODE KASUS:** DK-014  
-**NAMA KASUS:** Kematian Mr. PS  
-**TANGGAL KEJADIAN:** 14 November 2026  
-**LOKASI KEJADIAN:** Bogor, Jawa Barat  
-**KLASIFIKASI:** RAHASIA
+**Kode Kasus        :** DK-014  
+**Nama Kasus        :** Kematian Mr. PS  
+**Tanggal Kejadian  :** 14 November 2026  
+**Lokasi Kejadian   :** Bogor, Jawa Barat  
+**Klasifikasi       :** RAHASIA
 
 ---
 
@@ -19,10 +19,10 @@ Korban diketahui menyimpan dokumen dan rekaman pribadi yang diduga berkaitan den
 
 Empat orang telah diidentifikasi sebagai pihak yang memiliki hubungan dengan korban:
 
-1. **Mega** — Rival politik korban.
-2. **Ines** — Rekan bisnis korban.
+1. **Mega**  — Rival politik korban.
+2. **Ines**  — Rekan bisnis korban.
 3. **Teddy** — Asisten pribadi sekaligus orang kepercayaan korban.
-4. **Jar** — Rekan bisnis korban.
+4. **Jar**   — Rekan bisnis korban.
 
 Hubungan mereka dengan korban, termasuk pertemuan terakhir dan kemungkinan motif, perlu diperiksa lebih lanjut.
 

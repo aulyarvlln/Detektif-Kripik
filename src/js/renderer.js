@@ -6,6 +6,9 @@ const tabTools = document.getElementById("tab-tools"); // tab Tools di bawah
 const tabAdd = document.getElementById("tab-add"); // tab Add di bawah
 const tabRantai = document.getElementById("tab-rantai"); // tab Rantai Bukti di bawah
 const tabFileTambahan = document.getElementById("tab-file-tambahan");
+const toolsPanel = document.getElementById("tools-panel");
+const toolsPanelContent = document.getElementById("tools-panel-content");
+const tombolTutupTools = document.getElementById("btn-tutup-tools");
 
 const pageMap = {
     tools: "tools.html",
@@ -15,18 +18,57 @@ const pageMap = {
 };
 
 const dokumenList = [
-    { nama: "Briefing", path: "./assets/documents/Brief.txt" },
-    { nama: "Surat Mr.PS", path: "./assets/documents/Surat_PS.txt" },
-    { nama: "Rekaman Rahasia", tipe: "rekaman" },
-    { nama: "Dossier Tersangka", tipe: "dossier" },
-    { nama: "Tempat Kejadian Perkara", tipe: "tkp" },
+    {
+        nama: "Briefing",
+        path: "./assets/documents/Brief.txt",
+        ikon: "dokumen"
+    },
+    {
+        nama: "Surat Mr.PS",
+        path: "./assets/documents/Surat_PS.txt",
+        ikon: "dokumen"
+    },
+    {
+        nama: "Rekaman Rahasia",
+        tipe: "rekaman",
+        ikon: "audio"
+    },
+    {
+        nama: "Dossier Tersangka",
+        tipe: "dossier",
+        ikon: "gambar"
+    },
+    {
+        nama: "Tempat Kejadian Perkara",
+        tipe: "tkp",
+        ikon: "gambar"
+    },
 ];
 
-// Gambar ikon dokumen (dipakai ulang untuk semua item sidebar)
+// Ikon dokumen
 const IKON_DOKUMEN = `
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor" viewBox="0 0 16 16">
+        <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
+        <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+    </svg>
+`;
+
+// Ikon audio
+const IKON_AUDIO = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor" viewBox="0 0 16 16">
+        <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.6 2.6 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377s.974-.134 1.338-.377c.36-.24.662-.628.662-1.123V8.89l2-.5z"/>
+        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+    </svg>
+`;
+
+// Ikon gambar
+const IKON_GAMBAR = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+        fill="currentColor" viewBox="0 0 16 16">
+        <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+        <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z"/>
     </svg>
 `;
 
@@ -50,29 +92,41 @@ function bacaTeks(path) {
 
 // Menggambar daftar dokumen di sidebar; namaAktif = dokumen yang sedang dibuka (kuning)
 function buatSidebar(namaAktif = null) {
-    sidebarDocs.innerHTML = ""; // kosongkan dulu supaya tidak dobel
+    sidebarDocs.innerHTML = "";
 
     dokumenList.forEach((dok) => {
-        const aktif = dok.nama === namaAktif; // true kalau dokumen ini yang sedang dibuka
+        const aktif = dok.nama === namaAktif;
 
-        const item = document.createElement("div"); // buat satu item sidebar
+        const item = document.createElement("div");
+
         item.className =
-            "flex flex-col items-center cursor-pointer transition-transform active:scale-95 " +
-            (aktif ? "text-yellow-500" : "text-gray-500 hover:text-gray-300"); // warna sesuai status
+            "w-full min-h-[100px] flex flex-col items-center justify-center gap-3 py-4 px-2 cursor-pointer transition-colors " +
+            (aktif
+                ? "text-yellow-500"
+                : "text-gray-500 hover:text-gray-300");
+
+        // Menentukan ikon berdasarkan jenis file
+        let ikon = IKON_DOKUMEN;
+
+        if (dok.ikon === "audio") {
+            ikon = IKON_AUDIO;
+        } else if (dok.ikon === "gambar") {
+            ikon = IKON_GAMBAR;
+        }
 
         item.innerHTML = `
-            <div class="w-12 h-14 rounded flex items-center justify-center mb-2 ${
-                aktif
-                    ? "border-2 border-yellow-500 bg-[#1e2025]"
-                    : "border border-gray-600"
-            }">
-                ${IKON_DOKUMEN}
+            <div class="w-10 h-10 flex items-center justify-center shrink-0">
+                ${ikon}
             </div>
-            <span class="text-xs text-center break-all">${dok.nama}</span>
-        `; // isi item: kotak ikon + nama file
 
-        item.addEventListener("click", () => bukaDokumen(dok)); // klik = buka dokumen ini
-        sidebarDocs.appendChild(item); // masukkan item ke sidebar
+            <span class="w-full text-xs text-center leading-relaxed break-words">
+                ${dok.nama}
+            </span>
+        `;
+
+        item.addEventListener("click", () => bukaDokumen(dok));
+
+        sidebarDocs.appendChild(item);
     });
 }
 
@@ -170,49 +224,75 @@ async function bukaDokumen(dok) {
         if (dok.path === "./assets/documents/Surat_PS.txt") {
             const data = await window.cryptoAPI.getSuratPS();
 
-            pageContainer.innerHTML = `
-                <div class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl">
-                    <div class="flex items-center p-4 border-b border-gray-800">
-                        <h2 class="text-white font-semibold tracking-wide">
+            pageContainer.innerHTML = `                
+                <div class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl overflow-hidden">
+
+                    <!-- Header -->
+                    <div class="flex items-center px-5 py-3 border-b border-gray-800 shrink-0">
+                        <h2 class="text-white text-sm font-semibold tracking-wide">
                             SURAT PRIBADI MR. PS
                         </h2>
                     </div>
 
-                    <div class="p-6 flex-1 overflow-y-auto space-y-5">
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                            <h3 class="text-yellow-500 font-semibold mb-3">Informasi Dokumen</h3>
-                            <p class="text-gray-300 text-sm">Kode Dokumen: DK-014/PS</p>
-                            <p class="text-gray-300 text-sm">Pemilik: Mr. PS</p>
-                            <p class="text-gray-300 text-sm">Status: Barang Bukti</p>
+                    <!-- Konten -->
+                    <div class="p-5 flex-1 overflow-y-auto space-y-4">
+
+                        <!-- Informasi Dokumen -->
+                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
+                            <h3 class="text-yellow-500 text-sm font-semibold mb-3">
+                                Informasi Dokumen
+                            </h3>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <p class="text-gray-500 text-xs mb-1">Kode Dokumen</p>
+                                    <p class="text-gray-300 text-sm">DK-014/PS</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 text-xs mb-1">Pemilik</p>
+                                    <p class="text-gray-300 text-sm">Mr. PS</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 text-xs mb-1">Status</p>
+                                    <p class="text-gray-300 text-sm">Barang Bukti</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                            <h3 class="text-yellow-500 font-semibold mb-3">Catatan Barang Bukti</h3>
+                        <!-- Catatan Barang Bukti -->
+                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
+                            <h3 class="text-yellow-500 text-sm font-semibold mb-2">
+                                Catatan Barang Bukti
+                            </h3>
+
                             <p class="text-gray-300 text-sm leading-relaxed">
                                 Dokumen ini telah diamankan menggunakan enkripsi berlapis.
                                 Diperlukan analisis kriptografi untuk membaca isi aslinya.
                             </p>
                         </div>
 
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                            <h3 class="text-white font-semibold mb-4">
+                        <!-- Petunjuk Kriptografi -->
+                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
+                            <h3 class="text-white text-sm font-semibold mb-3">
                                 Petunjuk Kriptografi
                             </h3>
 
-                            <div class="space-y-4">
+                            <div class="space-y-3">
+
+                                <!-- AES -->
                                 <div>
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-2">
+                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
                                         1. AES-256-GCM
                                     </h4>
                                     <p class="text-gray-400 text-sm leading-relaxed">
-                                        Perhatikan kode dokumen,
-                                        hilangkan tanda baca untuk menemukan kata sandinya.
-                                        Gunakan algoritma AES-256-GCM dengan metode dekripsi.
+                                        Perhatikan kode dokumen, hilangkan tanda baca untuk
+                                        menemukan kata sandinya. Gunakan algoritma AES-256-GCM
+                                        dengan metode dekripsi.
                                     </p>
                                 </div>
 
-                                <div class="border-t border-gray-700 pt-4">
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-2">
+                                <div class="border-t border-gray-700 pt-3">
+                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
                                         2. Vigenère Cipher
                                     </h4>
                                     <p class="text-gray-400 text-sm leading-relaxed">
@@ -223,8 +303,8 @@ async function bukaDokumen(dok) {
                                     </p>
                                 </div>
 
-                                <div class="border-t border-gray-700 pt-4">
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-2">
+                                <div class="border-t border-gray-700 pt-3">
+                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
                                         3. Caesar Cipher
                                     </h4>
                                     <p class="text-gray-400 text-sm leading-relaxed">
@@ -234,23 +314,65 @@ async function bukaDokumen(dok) {
                                         perubahan huruf untuk menemukan pesan aslinya.
                                     </p>
                                 </div>
+
                             </div>
                         </div>
 
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                            <h3 class="text-yellow-500 font-semibold mb-3">
-                                Data Terenkripsi AES
-                            </h3>
-                            <p class="text-gray-400 text-sm mb-3">
+                        <!-- Data Terenkripsi AES -->
+                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
+                            <div class="flex justify-between items-center gap-3 mb-2">
+                                <h3 class="text-yellow-500 text-sm font-semibold">
+                                    Data Terenkripsi AES
+                                </h3>
+
+                                <button
+                                    id="btn-salin-ciphertext"
+                                    type="button"
+                                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-yellow-500 border border-yellow-600/60 rounded-lg hover:bg-yellow-500 hover:text-black transition-colors shrink-0"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="14" height="14" fill="currentColor"
+                                        viewBox="0 0 16 16">
+                                        <path d="M4 1.5A1.5 1.5 0 0 1 5.5 0h7A1.5 1.5 0 0 1 14 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 4 10.5zm1.5-.5a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                                        <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2H4v1h-.5a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V12h1v.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 12.5z"/>
+                                    </svg>
+                                    Salin
+                                </button>
+                            </div>
+
+                            <p class="text-gray-400 text-xs mb-3">
                                 Salin ciphertext berikut dan gunakan menu Tools
                                 untuk melakukan dekripsi.
                             </p>
+
                             <pre id="ciphertext-aes-surat"
-                                class="text-gray-300 text-xs font-mono leading-relaxed whitespace-pre-wrap break-all select-text"></pre>
+                                class="bg-[#1a1c23] border border-gray-800 rounded-lg p-3 text-gray-300 text-xs font-mono leading-relaxed whitespace-pre-wrap break-all select-text overflow-x-auto"></pre>
                         </div>
+
                     </div>
                 </div>
             `;
+
+            // Event tombol salin
+            const btnSalin = document.getElementById("btn-salin-ciphertext");
+            const ciphertextAES = document.getElementById("ciphertext-aes-surat");
+
+            btnSalin.addEventListener("click", async () => {
+                const teks = ciphertextAES.textContent.trim();
+
+                try {
+                    await navigator.clipboard.writeText(teks);
+
+                    btnSalin.textContent = "Tersalin!";
+
+                    setTimeout(() => {
+                        btnSalin.textContent = "Salin";
+                    }, 1500);
+
+                } catch (error) {
+                    console.error("Gagal menyalin ciphertext:", error);
+                }
+            });
 
             document.getElementById("ciphertext-aes-surat").textContent =
                 JSON.stringify(data.encryptedData, null, 2);
@@ -652,6 +774,39 @@ async function muatFileTambahan() {
     });
 }
 
+async function bukaToolsPanel() {
+    toolsPanel.classList.remove("hidden");
+    toolsPanel.classList.add("flex");
+
+    toolsPanelContent.innerHTML = `
+        <div class="text-gray-500 text-center p-4">
+            Memuat Tools...
+        </div>
+    `;
+
+    try {
+        const content = await window.pageAPI.loadPage(pageMap.tools);
+
+        toolsPanelContent.innerHTML = content;
+
+        aktifkanTools();
+
+    } catch (error) {
+        console.error("Gagal memuat Tools:", error);
+
+        toolsPanelContent.innerHTML = `
+            <div class="text-red-400 p-4">
+                Gagal memuat Tools: ${error.message}
+            </div>
+        `;
+    }
+}
+
+function tutupToolsPanel() {
+    toolsPanel.classList.add("hidden");
+    toolsPanel.classList.remove("flex");
+}
+
 function aktifkanTools() {
     const modeEncrypt = document.getElementById("mode-encrypt");
     const modeDecrypt = document.getElementById("mode-decrypt");
@@ -816,7 +971,6 @@ function aktifkanTools() {
     perbaruiKunci();
 }
 
-
 async function aktifkanRekaman() {
     const inputPassword = document.getElementById("password-rekaman");
     const tombolBuka = document.getElementById("btn-buka-rekaman");
@@ -826,6 +980,7 @@ async function aktifkanRekaman() {
     const panelEkstraksi = document.getElementById("panel-ekstraksi");
     const tombolEkstrak = document.getElementById("btn-ekstrak-audio");
     const hasil = document.getElementById("hasil-ekstraksi");
+    const modalPassword = document.getElementById("modal-password-rekaman");
 
     // Membuka rekaman dengan password
     tombolBuka.addEventListener("click", async () => {
@@ -843,9 +998,11 @@ async function aktifkanRekaman() {
 
             const audioBase64 = await window.cryptoAPI.getAudio();
 
-            pemutar.src = `data:audio/wav;base64,${audioBase64}`;
+           pemutar.src = `data:audio/wav;base64,${audioBase64}`;
 
+            modalPassword.classList.add("hidden");
             panelPemutar.classList.remove("hidden");
+
             status.textContent = "Rekaman berhasil dibuka. Silakan dengarkan sampai selesai.";
 
         } catch (error) {
@@ -892,14 +1049,24 @@ async function aktifkanDossier() {
     const inputPassword = document.getElementById("password-dossier");
     const tombolBuka = document.getElementById("btn-buka-dossier");
     const status = document.getElementById("status-dossier");
-    const panelKunci = document.getElementById("dossier-lock");
     const panelKonten = document.getElementById("dossier-content");
     const infoKasus = document.getElementById("info-kasus");
     const daftarTersangka = document.getElementById("daftar-tersangka");
+    const modalPassword = document.getElementById("modal-password-dossier");
 
+    if (
+        !inputPassword || !tombolBuka || !status ||
+        !panelKonten || !infoKasus || !daftarTersangka ||
+        !modalPassword
+    ) {
+        console.error("Elemen halaman dossier tidak ditemukan.");
+        return;
+    }
+
+    // Membuka dossier menggunakan password
     tombolBuka.addEventListener("click", async () => {
         tombolBuka.disabled = true;
-        status.textContent = "Membuka berkas dossier...";
+        status.textContent = "Memverifikasi kata kunci...";
 
         try {
             const data = await window.cryptoAPI.decryptDossier(
@@ -910,65 +1077,143 @@ async function aktifkanDossier() {
                 throw new Error("Format dossier tidak valid.");
             }
 
+            // Menampilkan informasi kasus
             infoKasus.innerHTML = `
-                <h2 class="text-xl font-bold text-amber-400 mb-4">
-                    ${data.case.title}
-                </h2>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                    <p class="text-gray-400">Tanggal:
-                        <span class="text-white">${data.case.date}</span>
-                    </p>
-                    <p class="text-gray-400">Lokasi:
-                        <span class="text-white">${data.case.location}</span>
-                    </p>
-                    <p class="text-gray-400">Korban:
-                        <span class="text-white">${data.case.victim}</span>
-                    </p>
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10
+                        flex items-center justify-center text-amber-400 text-xl">
+                        <span>📁</span>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">
+                            Case Information
+                        </p>
+                        <h2 class="text-xl font-bold text-amber-400">
+                            ${data.case.title}
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-[#12141a] rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Tanggal</p>
+                        <p class="text-sm text-white">${data.case.date}</p>
+                    </div>
+
+                    <div class="bg-[#12141a] rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Lokasi</p>
+                        <p class="text-sm text-white">${data.case.location}</p>
+                    </div>
+
+                    <div class="bg-[#12141a] rounded-lg p-3">
+                        <p class="text-xs text-gray-500 mb-1">Korban</p>
+                        <p class="text-sm text-white">${data.case.victim}</p>
+                    </div>
                 </div>
             `;
 
+            // Menghapus daftar tersangka sebelumnya
             daftarTersangka.innerHTML = "";
 
-            data.suspects.forEach((tersangka) => {
+            // Membuat card setiap tersangka
+            data.suspects.forEach((tersangka, index) => {
                 const namaFile = `${tersangka.name}_Rahasia.png`;
 
                 const kartu = document.createElement("div");
-                kartu.className = "bg-gray-800 border border-gray-700 rounded-xl overflow-hidden";
+
+                kartu.className = `
+                    dossier-card bg-[#1a1c23] border border-gray-700
+                    rounded-xl overflow-hidden shadow-lg
+                    hover:border-amber-500/50 transition-colors
+                `;
 
                 kartu.innerHTML = `
-                    <img
-                        src="./assets/images/${namaFile}"
-                        alt="Foto ${tersangka.name}"
-                        class="w-full h-56 object-cover"
-                    >
+                    <!-- Area foto -->
+                    <div class="relative h-64 bg-[#101116]
+                        flex items-center justify-center p-3">
+
+                        <img
+                            src="./assets/images/${namaFile}"
+                            alt="Foto ${tersangka.name}"
+                            class="w-full h-full object-contain"
+                        >
+
+                        <span class="absolute top-3 left-3
+                            bg-black/70 text-amber-400 text-xs
+                            px-3 py-1 rounded-md tracking-wider">
+                            SUSPECT #${String(index + 1).padStart(2, "0")}
+                        </span>
+                    </div>
+
+                    <!-- Informasi tersangka -->
                     <div class="p-5">
+                        <p class="text-xs text-gray-500 uppercase
+                            tracking-widest mb-1">
+                            Suspect Profile
+                        </p>
+
                         <h3 class="text-lg font-bold text-amber-400">
                             ${tersangka.name}
                         </h3>
+
                         <p class="text-sm text-gray-400 mt-1">
                             ${tersangka.relationship}
                         </p>
-                        <p class="text-sm text-gray-300 mt-3">
+
+                        <div class="border-t border-gray-700 my-4"></div>
+
+                        <p class="text-xs text-gray-500 uppercase mb-2">
+                            Deskripsi
+                        </p>
+
+                        <p class="text-sm text-gray-300 leading-relaxed">
                             ${tersangka.description}
                         </p>
-                        <p class="text-xs text-gray-500 mt-3">
-                            Pertemuan terakhir: ${tersangka.lastMeeting}
-                        </p>
+
+                        <div class="mt-4 bg-[#12141a] rounded-lg p-3">
+                            <p class="text-xs text-gray-500 mb-1">
+                                Pertemuan Terakhir
+                            </p>
+                            <p class="text-sm text-gray-300">
+                                ${tersangka.lastMeeting}
+                            </p>
+                        </div>
+
                         <button
-                            class="btn-ekstrak-lsb w-full mt-4 p-3 rounded-lg bg-amber-600 hover:bg-amber-700 font-semibold"
+                            type="button"
+                            class="btn-ekstrak-lsb w-full mt-4 p-3
+                                rounded-lg bg-amber-600 hover:bg-amber-700
+                                text-white font-semibold transition-colors"
                             data-nama="${tersangka.name}"
                         >
                             Ekstrak Pesan Rahasia
                         </button>
 
-                        <p class="status-ekstrak text-sm mt-2 text-center text-gray-400"></p>
+                        <p class="status-ekstrak text-sm mt-3
+                            text-center text-gray-400 break-words">
+                        </p>
                     </div>
                 `;
 
                 daftarTersangka.appendChild(kartu);
+
+                // Menampilkan pesan jika gambar gagal dimuat
+                const gambar = kartu.querySelector("img");
+
+                gambar.addEventListener("error", () => {
+                    gambar.alt = "Foto tersangka tidak ditemukan";
+                    gambar.classList.add("hidden");
+
+                    const pesan = document.createElement("p");
+                    pesan.className = "text-sm text-gray-500 text-center";
+                    pesan.textContent = "Foto tersangka tidak ditemukan.";
+
+                    gambar.parentElement.appendChild(pesan);
+                });
             });
 
-            panelKunci.classList.add("hidden");
+            // Modal ditutup setelah dossier berhasil dibuka
+            modalPassword.classList.add("hidden");
             panelKonten.classList.remove("hidden");
 
         } catch (error) {
@@ -978,18 +1223,19 @@ async function aktifkanDossier() {
         }
     });
 
-    // Mengaktifkan tombol ekstraksi pesan pada foto tersangka
+    // Event ekstraksi pesan rahasia
     daftarTersangka.addEventListener("click", async (event) => {
         const tombol = event.target.closest(".btn-ekstrak-lsb");
 
         if (!tombol) return;
 
         const nama = tombol.dataset.nama;
-        const kartu = tombol.closest("div.bg-gray-800");
-        const status = kartu.querySelector(".status-ekstrak");
+        const kartu = tombol.closest(".dossier-card");
+        const statusEkstrak = kartu.querySelector(".status-ekstrak");
 
         tombol.disabled = true;
-        status.textContent = "Mengekstrak pesan...";
+        tombol.textContent = "Mengekstrak...";
+        statusEkstrak.textContent = "Sedang mengekstrak pesan...";
 
         try {
             const hasil = await window.cryptoAPI.extractDossierImage(
@@ -997,18 +1243,24 @@ async function aktifkanDossier() {
             );
 
             if (!hasil.success) {
-                throw new Error("Pesan gagal diekstrak.");
+                throw new Error(hasil.message || "Pesan gagal diekstrak.");
             }
 
-            status.textContent = `Pesan rahasia: ${hasil.message}`;
-            status.classList.remove("text-gray-400");
-            status.classList.add("text-green-400");
+            statusEkstrak.textContent =
+                `Pesan rahasia: ${hasil.message}`;
+
+            statusEkstrak.className =
+                "status-ekstrak text-sm mt-3 text-center text-green-400 break-words";
 
         } catch (error) {
-            status.textContent = error.message;
-            status.classList.add("text-red-400");
+            statusEkstrak.textContent = error.message;
+
+            statusEkstrak.className =
+                "status-ekstrak text-sm mt-3 text-center text-red-400 break-words";
+
         } finally {
             tombol.disabled = false;
+            tombol.textContent = "Ekstrak Pesan Rahasia";
         }
     });
 }
@@ -1020,6 +1272,7 @@ async function aktifkanTKP() {
     const statusTKP = document.getElementById("status-tkp");
     const panelLock = document.getElementById("tkp-lock");
     const kontenTKP = document.getElementById("tkp-content");
+    const modalPassword = document.getElementById("modal-password-tkp");
 
     const tombolEkstrak = document.getElementById("btn-ekstrak-tkp");
     const hasilEkstraksi = document.getElementById("hasil-ekstraksi-tkp");
@@ -1039,7 +1292,7 @@ async function aktifkanTKP() {
             return;
         }
 
-        panelLock.classList.add("hidden");
+        modalPassword.classList.add("hidden");
         kontenTKP.classList.remove("hidden");
     });
 
@@ -1152,7 +1405,14 @@ async function openPage(pageName, activeTab = null) {
 }
 
 // Event klik untuk tab bawah
-tabTools.addEventListener("click", () => openPage("tools", tabTools));
+tabTools.addEventListener("click", () => {
+    bukaToolsPanel();
+});
+
+tombolTutupTools.addEventListener("click", () => {
+    tutupToolsPanel();
+});
+
 tabAdd.addEventListener("click", () => openPage("add", tabAdd));
 tabRantai.addEventListener("click", () => openPage("rantai", tabRantai));
 tabFileTambahan.addEventListener("click", () => openPage("fileTambahan", tabFileTambahan));
