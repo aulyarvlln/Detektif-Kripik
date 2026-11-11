@@ -102,8 +102,8 @@ function buatSidebar(namaAktif = null) {
         item.className =
             "w-full min-h-[100px] flex flex-col items-center justify-center gap-3 py-4 px-2 cursor-pointer transition-colors " +
             (aktif
-                ? "text-yellow-500"
-                : "text-gray-500 hover:text-gray-300");
+                ? "text-[#A33D50]"
+                : "text-[#AA9DA4] hover:text-[#F5EFF1]");
 
         // Menentukan ikon berdasarkan jenis file
         let ikon = IKON_DOKUMEN;
@@ -139,8 +139,8 @@ function renderBriefMarkdown(markdown) {
 
     const formatInline = (text) => {
         return escapeHTML(text)
-            .replace(/\*\*(.*?)\*\*/g, "<strong class='text-white font-semibold'>$1</strong>")
-            .replace(/\*(.*?)\*/g, "<em class='text-gray-400'>$1</em>");
+            .replace(/\*\*(.*?)\*\*/g, "<strong class='text-[#F5EFF1] font-semibold'>$1</strong>")
+            .replace(/\*(.*?)\*/g, "<em class='text-[#AA9DA4]'>$1</em>");
     };
 
     const lines = markdown.split(/\r?\n/);
@@ -159,16 +159,16 @@ function renderBriefMarkdown(markdown) {
         }
 
         if (line === "---") {
-            html += "<hr class='border-gray-700 my-5'>";
+            html += "<hr class='border-[#45343F] my-5'>";
         } else if (line.startsWith("# ")) {
-            html += `<h1 class="text-2xl font-bold text-white tracking-widest mb-2">${formatInline(line.slice(2))}</h1>`;
+            html += `<h1 class="text-2xl font-bold text-[#F5EFF1] tracking-widest mb-2">${formatInline(line.slice(2))}</h1>`;
         } else if (line.startsWith("## ")) {
-            html += `<h2 class="text-sm font-semibold text-yellow-500 tracking-[0.2em] mb-5">${formatInline(line.slice(3))}</h2>`;
+            html += `<h2 class="text-sm font-semibold text-[#A33D50] tracking-[0.2em] mb-5">${formatInline(line.slice(3))}</h2>`;
         } else if (line.startsWith("### ")) {
-            html += `<h3 class="text-yellow-500 font-semibold text-sm uppercase tracking-wider mt-6 mb-3">${formatInline(line.slice(4))}</h3>`;
+            html += `<h3 class="text-[#A33D50] font-semibold text-sm uppercase tracking-wider mt-6 mb-3">${formatInline(line.slice(4))}</h3>`;
         } else if (/^\d+\.\s/.test(line)) {
             if (!inList) {
-                html += "<ol class='list-decimal list-inside space-y-3 text-gray-300 text-sm leading-relaxed ml-2'>";
+                html += "<ol class='list-decimal list-inside space-y-3 text-[#F5EFF1] text-sm leading-relaxed ml-2'>";
                 inList = true;
             }
             html += `<li>${formatInline(line.replace(/^\d+\.\s/, ""))}</li>`;
@@ -177,7 +177,7 @@ function renderBriefMarkdown(markdown) {
                 html += "</ol>";
                 inList = false;
             }
-            html += `<p class="text-gray-300 text-sm leading-relaxed mb-3">${formatInline(line)}</p>`;
+            html += `<p class="text-[#F5EFF1] text-sm leading-relaxed mb-3">${formatInline(line)}</p>`;
         }
     }
 
@@ -225,11 +225,11 @@ async function bukaDokumen(dok) {
             const data = await window.cryptoAPI.getSuratPS();
 
             pageContainer.innerHTML = `                
-                <div class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl overflow-hidden">
+                <div class="bg-[#292128] border border-[#45343F] rounded-xl flex-1 flex flex-col shadow-2xl overflow-hidden">
 
                     <!-- Header -->
-                    <div class="flex items-center px-5 py-3 border-b border-gray-800 shrink-0">
-                        <h2 class="text-white text-sm font-semibold tracking-wide">
+                    <div class="flex items-center px-5 py-3 border-b border-[#45343F] shrink-0">
+                        <h2 class="text-[#F5EFF1] text-sm font-semibold tracking-wide">
                             SURAT PRIBADI MR. PS
                         </h2>
                     </div>
@@ -238,42 +238,42 @@ async function bukaDokumen(dok) {
                     <div class="p-5 flex-1 overflow-y-auto space-y-4">
 
                         <!-- Informasi Dokumen -->
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                            <h3 class="text-yellow-500 text-sm font-semibold mb-3">
+                        <div class="bg-[#1D191E] border border-[#45343F] rounded-lg p-4">
+                            <h3 class="text-[#A33D50] text-sm font-semibold mb-3">
                                 Informasi Dokumen
                             </h3>
 
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div>
-                                    <p class="text-gray-500 text-xs mb-1">Kode Dokumen</p>
-                                    <p class="text-gray-300 text-sm">DK-014/PS</p>
+                                    <p class="text-[#AA9DA4] text-xs mb-1">Kode Dokumen</p>
+                                    <p class="text-[#F5EFF1] text-sm">DK-014/PS</p>
                                 </div>
                                 <div>
-                                    <p class="text-gray-500 text-xs mb-1">Pemilik</p>
-                                    <p class="text-gray-300 text-sm">Mr. PS</p>
+                                    <p class="text-[#AA9DA4] text-xs mb-1">Pemilik</p>
+                                    <p class="text-[#F5EFF1] text-sm">Mr. PS</p>
                                 </div>
                                 <div>
-                                    <p class="text-gray-500 text-xs mb-1">Status</p>
-                                    <p class="text-gray-300 text-sm">Barang Bukti</p>
+                                    <p class="text-[#AA9DA4] text-xs mb-1">Status</p>
+                                    <p class="text-[#F5EFF1] text-sm">Barang Bukti</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Catatan Barang Bukti -->
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                            <h3 class="text-yellow-500 text-sm font-semibold mb-2">
+                        <div class="bg-[#1D191E] border border-[#45343F] rounded-lg p-4">
+                            <h3 class="text-[#A33D50] text-sm font-semibold mb-2">
                                 Catatan Barang Bukti
                             </h3>
 
-                            <p class="text-gray-300 text-sm leading-relaxed">
+                            <p class="text-[#F5EFF1] text-sm leading-relaxed">
                                 Dokumen ini telah diamankan menggunakan enkripsi berlapis.
                                 Diperlukan analisis kriptografi untuk membaca isi aslinya.
                             </p>
                         </div>
 
                         <!-- Petunjuk Kriptografi -->
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                            <h3 class="text-white text-sm font-semibold mb-3">
+                        <div class="bg-[#1D191E] border border-[#45343F] rounded-lg p-4">
+                            <h3 class="text-[#F5EFF1] text-sm font-semibold mb-3">
                                 Petunjuk Kriptografi
                             </h3>
 
@@ -281,21 +281,21 @@ async function bukaDokumen(dok) {
 
                                 <!-- AES -->
                                 <div>
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
+                                    <h4 class="text-[#C6A46A] font-semibold text-sm mb-1.5">
                                         1. AES-256-GCM
                                     </h4>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
+                                    <p class="text-[#AA9DA4] text-sm leading-relaxed">
                                         Perhatikan kode dokumen, hilangkan tanda baca untuk
                                         menemukan kata sandinya. Gunakan algoritma AES-256-GCM
                                         dengan metode dekripsi.
                                     </p>
                                 </div>
 
-                                <div class="border-t border-gray-700 pt-3">
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
+                                <div class="border-t border-[#45343F] pt-3">
+                                    <h4 class="text-[#C6A46A] font-semibold text-sm mb-1.5">
                                         2. Vigenère Cipher
                                     </h4>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
+                                    <p class="text-[#AA9DA4] text-sm leading-relaxed">
                                         Setelah lapisan pertama terbuka, pesan masih berupa
                                         ciphertext. Perhatikan petunjuk lokasi kejadian.
                                         Nama sebuah kota dapat menjadi kunci untuk membaca
@@ -303,11 +303,11 @@ async function bukaDokumen(dok) {
                                     </p>
                                 </div>
 
-                                <div class="border-t border-gray-700 pt-3">
-                                    <h4 class="text-yellow-500 font-semibold text-sm mb-1.5">
+                                <div class="border-t border-[#45343F] pt-3">
+                                    <h4 class="text-[#C6A46A] font-semibold text-sm mb-1.5">
                                         3. Caesar Cipher
                                     </h4>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
+                                    <p class="text-[#AA9DA4] text-sm leading-relaxed">
                                         Jika pesan masih belum terbaca setelah tahap kedua,
                                         berarti masih ada satu lapisan terakhir.
                                         Perhatikan pergeseran alfabet dan analisis pola
@@ -319,16 +319,16 @@ async function bukaDokumen(dok) {
                         </div>
 
                         <!-- Data Terenkripsi AES -->
-                        <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
+                        <div class="bg-[#1D191E] border border-[#45343F] rounded-lg p-4">
                             <div class="flex justify-between items-center gap-3 mb-2">
-                                <h3 class="text-yellow-500 text-sm font-semibold">
+                                <h3 class="text-[#A33D50] text-sm font-semibold">
                                     Data Terenkripsi AES
                                 </h3>
 
                                 <button
                                     id="btn-salin-ciphertext"
                                     type="button"
-                                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-yellow-500 border border-yellow-600/60 rounded-lg hover:bg-yellow-500 hover:text-black transition-colors shrink-0"
+                                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-[#A33D50] border border-[#A33D50]/60 rounded-lg hover:bg-[#B94B60] hover:text-[#F5EFF1] transition-colors shrink-0"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         width="14" height="14" fill="currentColor"
@@ -340,13 +340,13 @@ async function bukaDokumen(dok) {
                                 </button>
                             </div>
 
-                            <p class="text-gray-400 text-xs mb-3">
+                            <p class="text-[#AA9DA4] text-xs mb-3">
                                 Salin ciphertext berikut dan gunakan menu Tools
                                 untuk melakukan dekripsi.
                             </p>
 
                             <pre id="ciphertext-aes-surat"
-                                class="bg-[#1a1c23] border border-gray-800 rounded-lg p-3 text-gray-300 text-xs font-mono leading-relaxed whitespace-pre-wrap break-all select-text overflow-x-auto"></pre>
+                                class="bg-[#141214] border border-[#45343F] rounded-lg p-3 text-[#F5EFF1] text-xs font-mono leading-relaxed whitespace-pre-wrap break-all select-text overflow-x-auto"></pre>
                         </div>
 
                     </div>
@@ -400,13 +400,13 @@ async function bukaDokumen(dok) {
         const isi = await bacaTeks(dok.path);
 
         pageContainer.innerHTML = `
-            <div class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl">
-                <div class="flex items-center p-4 border-b border-gray-800">
-                    <h2 class="text-white font-semibold tracking-wide">${dok.nama}</h2>
+            <div class="bg-[#292128] border border-[#45343F] rounded-xl flex-1 flex flex-col shadow-2xl">
+                <div class="flex items-center p-4 border-b border-[#45343F]">
+                    <h2 class="text-[#F5EFF1] font-semibold tracking-wide">${dok.nama}</h2>
                 </div>
                 <div class="p-6 flex-1 overflow-y-auto">
-                    <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                        <pre id="isi-dokumen" class="text-gray-300 font-mono leading-relaxed whitespace-pre-wrap break-words select-text"></pre>
+                    <div class="bg-[#1D191E] border border-[#45343F] rounded-lg p-4">
+                        <pre id="isi-dokumen" class="text-[#F5EFF1] font-mono leading-relaxed whitespace-pre-wrap break-words select-text"></pre>
                     </div>
                 </div>
             </div>
@@ -837,12 +837,12 @@ function aktifkanTools() {
         tombolProses.textContent = encrypt ? "Proses Enkripsi" : "Proses Dekripsi";
 
         modeEncrypt.className = encrypt
-            ? "flex-1 py-3 rounded-lg border-2 border-yellow-500 text-yellow-500 font-semibold bg-[#1e2025]"
-            : "flex-1 py-3 rounded-lg border border-gray-700 text-gray-400 font-semibold";
+            ? "flex-1 py-3 rounded-lg border-2 border-[#A33D50] text-[#A33D50] font-semibold bg-[#292128]"
+            : "flex-1 py-3 rounded-lg border border-[#45343F] text-[#AA9DA4] font-semibold";
 
         modeDecrypt.className = !encrypt
-            ? "flex-1 py-3 rounded-lg border-2 border-yellow-500 text-yellow-500 font-semibold bg-[#1e2025]"
-            : "flex-1 py-3 rounded-lg border border-gray-700 text-gray-400 font-semibold";
+            ? "flex-1 py-3 rounded-lg border-2 border-[#A33D50] text-[#A33D50] font-semibold bg-[#292128]"
+            : "flex-1 py-3 rounded-lg border border-[#45343F] text-[#AA9DA4] font-semibold";
 
         dataAESUntukDisalin = null;
         hasil.value = "";
@@ -1081,14 +1081,14 @@ async function aktifkanDossier() {
             infoKasus.innerHTML = `
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-10 h-10 rounded-lg bg-amber-500/10
-                        flex items-center justify-center text-amber-400 text-xl">
+                        flex items-center justify-center text-[#C6A46A] text-xl">
                         <span>📁</span>
                     </div>
                     <div>
                         <p class="text-xs text-gray-500 uppercase tracking-widest">
                             Case Information
                         </p>
-                        <h2 class="text-xl font-bold text-amber-400">
+                        <h2 class="text-xl font-bold text-[#C6A46A]">
                             ${data.case.title}
                         </h2>
                     </div>
@@ -1122,14 +1122,14 @@ async function aktifkanDossier() {
                 const kartu = document.createElement("div");
 
                 kartu.className = `
-                    dossier-card bg-[#1a1c23] border border-gray-700
+                    dossier-card bg-[#292128] border border-[#45343F]
                     rounded-xl overflow-hidden shadow-lg
-                    hover:border-amber-500/50 transition-colors
+                    hover:border-[#A33D50]/50 transition-colors
                 `;
 
                 kartu.innerHTML = `
                     <!-- Area foto -->
-                    <div class="relative h-64 bg-[#101116]
+                    <div class="relative h-64 bg-[#141214]
                         flex items-center justify-center p-3">
 
                         <img
@@ -1139,7 +1139,7 @@ async function aktifkanDossier() {
                         >
 
                         <span class="absolute top-3 left-3
-                            bg-black/70 text-amber-400 text-xs
+                            bg-black/70 text-[#C6A46A] text-xs
                             px-3 py-1 rounded-md tracking-wider">
                             SUSPECT #${String(index + 1).padStart(2, "0")}
                         </span>
@@ -1147,34 +1147,34 @@ async function aktifkanDossier() {
 
                     <!-- Informasi tersangka -->
                     <div class="p-5">
-                        <p class="text-xs text-gray-500 uppercase
+                        <p class="text-xs text-[#AA9DA4] uppercase
                             tracking-widest mb-1">
                             Suspect Profile
                         </p>
 
-                        <h3 class="text-lg font-bold text-amber-400">
+                        <h3 class="text-lg font-bold text-[#A33D50]">
                             ${tersangka.name}
                         </h3>
 
-                        <p class="text-sm text-gray-400 mt-1">
+                        <p class="text-sm text-[#AA9DA4] mt-1">
                             ${tersangka.relationship}
                         </p>
 
-                        <div class="border-t border-gray-700 my-4"></div>
+                        <div class="border-t border-[#45343F] my-4"></div>
 
-                        <p class="text-xs text-gray-500 uppercase mb-2">
+                        <p class="text-xs text-[#AA9DA4] uppercase mb-2">
                             Deskripsi
                         </p>
 
-                        <p class="text-sm text-gray-300 leading-relaxed">
+                        <p class="text-sm text-[#F5EFF1] leading-relaxed">
                             ${tersangka.description}
                         </p>
 
-                        <div class="mt-4 bg-[#12141a] rounded-lg p-3">
-                            <p class="text-xs text-gray-500 mb-1">
+                        <div class="mt-4 bg-[#1D191E] rounded-lg p-3">
+                            <p class="text-xs text-[#AA9DA4] mb-1">
                                 Pertemuan Terakhir
                             </p>
-                            <p class="text-sm text-gray-300">
+                            <p class="text-sm text-[#F5EFF1]">
                                 ${tersangka.lastMeeting}
                             </p>
                         </div>
@@ -1182,15 +1182,15 @@ async function aktifkanDossier() {
                         <button
                             type="button"
                             class="btn-ekstrak-lsb w-full mt-4 p-3
-                                rounded-lg bg-amber-600 hover:bg-amber-700
-                                text-white font-semibold transition-colors"
+                                rounded-lg bg-[#A33D50] hover:bg-[#B94B60]
+                                text-[#F5EFF1] font-semibold transition-colors"
                             data-nama="${tersangka.name}"
                         >
                             Ekstrak Pesan Rahasia
                         </button>
 
                         <p class="status-ekstrak text-sm mt-3
-                            text-center text-gray-400 break-words">
+                            text-center text-[#AA9DA4] break-words">
                         </p>
                     </div>
                 `;

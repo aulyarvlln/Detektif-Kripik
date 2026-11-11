@@ -1,11 +1,11 @@
-<div class="relative bg-[#1a1c23] border border-gray-700 rounded-xl
+<div class="relative bg-[#1D191E] border border-[#45343F] rounded-xl
     flex-1 flex flex-col shadow-2xl overflow-y-auto">
 
-    <div class="p-5 border-b border-gray-800">
-        <h2 class="text-xl font-bold text-amber-400 tracking-wide">
+    <div class="p-5 border-b border-[#45343F]">
+        <h2 class="text-xl font-bold text-[#C6A46A] tracking-wide">
             TEMPAT KEJADIAN PERKARA
         </h2>
-        <p class="text-sm text-gray-400 mt-1">
+        <p class="text-sm text-[#AA9DA4] mt-1">
             Analisis lokasi dan bukti visual kejadian.
         </p>
     </div>
@@ -15,89 +15,79 @@
         <!-- Modal Password TKP -->
         <div id="modal-password-tkp" class="absolute inset-0 z-50 flex items-center justify-center
                 bg-black/80 backdrop-blur-sm p-5">
-            <div class="w-full max-w-md p-7 rounded-2xl bg-[#1a1c23]
-                border border-amber-500/30 shadow-2xl">
-        
+            <div class="w-full max-w-md p-7 rounded-2xl bg-[#1D191E]
+                border border-[#A33D50]/30 shadow-2xl">
+
                 <div class="flex flex-col items-center text-center mb-6">
-                    <div class="w-14 h-14 rounded-full bg-amber-500/10
-                        flex items-center justify-center text-amber-400 text-2xl mb-4">
+                    <div class="w-14 h-14 rounded-full bg-[#A33D50]/10
+                        flex items-center justify-center text-[#C6A46A] text-2xl mb-4">
                         🔒
                     </div>
-        
-                    <h3 class="text-xl font-bold text-amber-400">
+
+                    <h3 class="text-xl font-bold text-[#C6A46A]">
                         Akses Berkas TKP
                     </h3>
-        
-                    <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+
+                    <p class="text-sm text-[#AA9DA4] mt-2 leading-relaxed">
                         Masukkan kata sandi hasil analisis foto dossier
                         untuk membuka berkas tempat kejadian perkara.
                     </p>
                 </div>
-        
-                <input id="password-tkp" type="password" placeholder="Masukkan kata sandi..." class="w-full p-3 rounded-lg bg-gray-800 border
-                        border-gray-700 text-white mb-3
-                        focus:outline-none focus:border-amber-500">
-        
-                <button id="btn-buka-tkp" type="button" class="w-full p-3 rounded-lg bg-amber-600
-                        hover:bg-amber-700 text-white font-semibold
+
+                <input id="password-tkp" type="password" placeholder="Masukkan kata sandi..." class="w-full p-3 rounded-lg bg-[#292128] border
+                        border-[#45343F] text-[#F5EFF1] mb-3
+                        focus:outline-none focus:border-[#B94B60]">
+
+                <button id="btn-buka-tkp" type="button" class="w-full p-3 rounded-lg bg-[#A33D50]
+                        hover:bg-[#B94B60] text-[#F5EFF1] font-semibold
                         transition-colors">
                     Buka Berkas TKP
                 </button>
-        
-                <p id="status-tkp" class="text-sm text-center text-gray-400 mt-3"></p>
+
+                <p id="status-tkp" class="text-sm text-center text-[#AA9DA4] mt-3"></p>
             </div>
         </div>
 
         <div id="tkp-content" class="hidden space-y-5">
 
-            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                <h3 class="text-amber-400 font-semibold mb-3">
+            <div class="bg-[#141214] border border-[#45343F] rounded-lg p-5">
+                <h3 class="text-[#C6A46A] font-semibold mb-3">
                     Dokumentasi Tempat Kejadian
                 </h3>
 
-                <img
-                    src="./assets/images/TKP.png"
-                    alt="Foto asli tempat kejadian perkara"
-                    class="w-full max-h-[500px] object-contain rounded-lg"
-                >
+                <img src="./assets/images/TKP.png" alt="Foto asli tempat kejadian perkara"
+                    class="w-full max-h-[500px] object-contain rounded-lg">
             </div>
 
-            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                <h3 class="text-amber-400 font-semibold mb-3">
+            <div class="bg-[#141214] border border-[#45343F] rounded-lg p-5">
+                <h3 class="text-[#C6A46A] font-semibold mb-3">
                     Analisis Bukti Digital
                 </h3>
 
-                <p class="text-gray-400 text-sm mb-4">
+                <p class="text-[#AA9DA4] text-sm mb-4">
                     Ditemukan sebuah foto yang diduga menyimpan pesan tersembunyi.
                     Lakukan ekstraksi steganografi untuk menemukan petunjuk berikutnya.
                 </p>
 
-                <button
-                    id="btn-ekstrak-tkp"
-                    class="w-full p-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold"
-                >
+                <button id="btn-ekstrak-tkp"
+                    class="w-full p-3 rounded-lg bg-[#A33D50] hover:bg-[#B94B60] text-[#F5EFF1] font-semibold">
                     Ekstrak Pesan Rahasia
                 </button>
 
-                <p
-                    id="hasil-ekstraksi-tkp"
-                    class="text-sm text-center text-gray-300 mt-3"
-                ></p>
+                <p id="hasil-ekstraksi-tkp" class="text-sm text-center text-[#F5EFF1] mt-3"></p>
             </div>
 
-            <div id="panel-pilih-pelaku" class="hidden bg-[#12141a] border border-gray-700 rounded-lg p-5">
-                <h3 class="text-amber-400 font-semibold mb-3">
+            <div id="panel-pilih-pelaku" class="hidden bg-[#141214] border border-[#45343F] rounded-lg p-5">
+                <h3 class="text-[#C6A46A] font-semibold mb-3">
                     Identifikasi Pelaku
                 </h3>
 
-                <p class="text-gray-400 text-sm mb-4">
+                <p class="text-[#AA9DA4] text-sm mb-4">
                     Berdasarkan seluruh bukti yang telah ditemukan, siapa yang paling mungkin menjadi pelaku?
                 </p>
 
-                <select
-                    id="pilihan-pelaku"
-                    class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white mb-3"
-                >
+                <select id="pilihan-pelaku"
+                    class="w-full p-3 rounded-lg bg-[#292128] border border-[#45343F] text-[#F5EFF1] mb-3">
                     <option value="">Pilih tersangka...</option>
                     <option value="Mega">Mega</option>
                     <option value="Ines">Ines</option>
@@ -105,10 +95,8 @@
                     <option value="Jar">Jar</option>
                 </select>
 
-                <button
-                    id="btn-periksa-pelaku"
-                    class="w-full p-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold"
-                >
+                <button id="btn-periksa-pelaku"
+                    class="w-full p-3 rounded-lg bg-[#A33D50] hover:bg-[#B94B60] text-[#F5EFF1] font-semibold">
                     Periksa Jawaban
                 </button>
 

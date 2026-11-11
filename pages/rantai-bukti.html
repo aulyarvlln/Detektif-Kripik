@@ -1,53 +1,49 @@
-
-<div id="panel-rantai" class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl relative">
-    <div class="flex justify-between items-center p-4 border-b border-gray-800">
-        <h2 class="text-white font-semibold tracking-wide">Rantai Bukti</h2>
-        <button id="btn-tutup-rantai" class="text-gray-400 hover:text-white">&times;</button>
+<div id="panel-rantai" class="bg-[#1D191E] border border-[#45343F] rounded-xl flex-1 flex flex-col shadow-2xl relative">
+    <div class="flex justify-between items-center p-4 border-b border-[#45343F]">
+        <h2 class="text-[#F5EFF1] font-semibold tracking-wide">Rantai Bukti</h2>
+        <button id="btn-tutup-rantai" class="text-[#AA9DA4] hover:text-[#F5EFF1]">&times;</button>
     </div>
 
     <div class="p-6 flex-1 overflow-y-auto">
-        <h3 class="text-2xl font-bold text-white mb-2">Rantai Bukti Digital</h3>
+        <h3 class="text-2xl font-bold text-[#F5EFF1] mb-2">Rantai Bukti Digital</h3>
 
-        <p class="text-gray-400 text-sm mb-6">
+        <p class="text-[#AA9DA4] text-sm mb-6">
             Setiap barang bukti yang didaftarkan akan menjadi blok baru.
             Setiap blok terhubung menggunakan hash SHA-256.
         </p>
 
-        <button
-            id="btn-daftarkan-bukti"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium mb-6"
-        >
+        <button id="btn-daftarkan-bukti"
+            class="bg-[#A33D50] hover:bg-[#B94B60] text-[#F5EFF1] px-4 py-2 rounded-lg text-sm font-medium mb-6">
             + Daftarkan Bukti
         </button>
 
         <div class="flex flex-wrap gap-3 mb-6">
-            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                <p class="text-xs text-gray-500">Total Blok</p>
-                <p id="total-blok" class="text-2xl font-bold text-white">0</p>
+            <div class="bg-[#141214] border border-[#45343F] rounded-lg p-4">
+                <p class="text-xs text-[#AA9DA4]">Total Blok</p>
+                <p id="total-blok" class="text-2xl font-bold text-[#F5EFF1]">0</p>
             </div>
 
-            <div class="bg-[#12141a] border border-gray-700 rounded-lg p-4">
-                <p class="text-xs text-gray-500">Status Rantai</p>
-                <p id="status-rantai" class="text-sm font-bold text-gray-400">Belum diverifikasi</p>
+            <div class="bg-[#141214] border border-[#45343F] rounded-lg p-4">
+                <p class="text-xs text-[#AA9DA4]">Status Rantai</p>
+                <p id="status-rantai" class="text-sm font-bold text-[#AA9DA4]">Belum diverifikasi</p>
             </div>
         </div>
 
         <div id="daftar-blok" class="flex items-stretch gap-3 overflow-x-auto pb-4">
-            <p class="text-gray-400">Memuat blockchain...</p>
+            <p class="text-[#AA9DA4]">Memuat blockchain...</p>
         </div>
 
-        <button
-            id="btn-verifikasi-rantai"
-            class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg shadow-lg mb-6 transition-transform active:scale-95">
+        <button id="btn-verifikasi-rantai"
+            class="bg-[#A33D50] hover:bg-[#B94B60] text-[#F5EFF1] font-bold py-3 px-6 rounded-lg shadow-lg mb-6 transition-transform active:scale-95">
             Verifikasi Rantai
         </button>
 
         <div id="hasil-verifikasi-rantai" class="hidden border rounded-lg p-4 mb-4"></div>
 
-        <h3 class="text-white font-semibold mb-3">Verifikasi Keaslian Bukti</h3>
+        <h3 class="text-[#F5EFF1] font-semibold mb-3">Verifikasi Keaslian Bukti</h3>
 
         <div id="daftar-verifikasi-bukti" class="space-y-3">
-            <p class="text-gray-400 text-sm">Belum ada bukti terdaftar.</p>
+            <p class="text-[#AA9DA4] text-sm">Belum ada bukti terdaftar.</p>
         </div>
     </div>
 </div>

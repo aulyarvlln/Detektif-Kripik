@@ -55,6 +55,34 @@
       },
       "previousHash": "b00939ff729f321d275b22851a118fb80842af98508d0a80f55c93fe9e1f09f2",
       "hash": "a51271e2d49fc4025fd0f3ff844a9986eb422dcf4e2e626d236e9eff9c2ec29e"
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-11-11T10:25:05.788Z",
+      "evidence": {
+        "id": "b68c387b-fada-41b4-9693-aa6b5f3b97e2",
+        "fileName": "Foto_Rahasia.png",
+        "filePath": "Foto_Rahasia.png",
+        "fileHash": "7bb813d290df195015dff285f244ac4a632734d82690d9d6664eff11f1a71396",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "a51271e2d49fc4025fd0f3ff844a9986eb422dcf4e2e626d236e9eff9c2ec29e",
+      "hash": "b00061444ff088ee7fcfcddf5cbdb2ed64f6dee05a03c8509ead2fb748b6e06d"
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-11-11T11:03:51.563Z",
+      "evidence": {
+        "id": "c5a41386-c23b-4404-9772-b5743bca1a25",
+        "fileName": "bukti01-fotbar-ulang-tahun.png",
+        "filePath": "assets\\images\\hasil-add\\bukti01-fotbar-ulang-tahun.png",
+        "fileHash": "b49073d6139e017abe9976c5b9a6e6d89435a4d38025b08d4c0ae5100ae9d76c",
+        "category": "Barang Bukti",
+        "description": "Bukti investigasi Detektif Kripik"
+      },
+      "previousHash": "b00061444ff088ee7fcfcddf5cbdb2ed64f6dee05a03c8509ead2fb748b6e06d",
+      "hash": "d520504b9c18b2eb65fb626e3a4da1b6b2da0b1bb530567f2c702dbb4eb1076a"
     }
   ]
 }

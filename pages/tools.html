@@ -1,24 +1,23 @@
+<div id="panel-tools" class="bg-[#1D191E] border border-[#45343F] rounded-xl flex-1 flex flex-col shadow-2xl relative">
 
-<div id="panel-tools" class="bg-[#1a1c23] border border-gray-700 rounded-xl flex-1 flex flex-col shadow-2xl relative">
-
-    <div class="flex justify-between items-center p-4 border-b border-gray-800">
-        <h2 class="text-white font-semibold tracking-wide">Tools Kriptografi</h2>
+    <div class="flex justify-between items-center p-4 border-b border-[#45343F]">
+        <h2 class="text-[#F5EFF1] font-semibold tracking-wide">Tools Kriptografi</h2>
     </div>
 
     <div class="p-6 flex-1 overflow-y-auto">
-        <h3 class="text-2xl font-bold text-white mb-2">Enkripsi & Dekripsi</h3>
-        <p class="text-gray-400 text-sm mb-6">
+        <h3 class="text-2xl font-bold text-[#F5EFF1] mb-2">Enkripsi & Dekripsi</h3>
+        <p class="text-[#AA9DA4] text-sm mb-6">
             Gunakan algoritma kriptografi untuk mengamankan atau membaca pesan.
         </p>
 
         <div class="flex space-x-3 mb-6">
             <button id="mode-encrypt"
-                class="flex-1 py-3 rounded-lg border-2 border-yellow-500 text-yellow-500 font-semibold bg-[#1e2025]">
+                class="flex-1 py-3 rounded-lg border-2 border-[#A33D50] text-[#C6A46A] font-semibold bg-[#292128]">
                 Enkripsi
             </button>
 
             <button id="mode-decrypt"
-                class="flex-1 py-3 rounded-lg border border-gray-700 text-gray-400 font-semibold">
+                class="flex-1 py-3 rounded-lg border border-[#45343F] text-[#AA9DA4] font-semibold">
                 Dekripsi
             </button>
         </div>
@@ -27,22 +26,21 @@
 
             <div class="flex flex-col space-y-4">
                 <div>
-                    <label id="label-input" class="block text-xs text-gray-400 mb-2">
+                    <label id="label-input" class="block text-xs text-[#AA9DA4] mb-2">
                         Plaintext
                     </label>
 
-                    <textarea id="input-crypto"
-                        placeholder="Masukkan plaintext..."
-                        class="w-full h-48 bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500 resize-none"></textarea>
+                    <textarea id="input-crypto" placeholder="Masukkan plaintext..."
+                        class="w-full h-48 bg-[#141214] border border-[#45343F] rounded-lg p-3 text-[#F5EFF1] focus:outline-none focus:border-[#B94B60] resize-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-xs text-gray-400 mb-2">
+                    <label class="block text-xs text-[#AA9DA4] mb-2">
                         Algoritma
                     </label>
 
                     <select id="algorithm-crypto"
-                        class="w-full bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500">
+                        class="w-full bg-[#141214] border border-[#45343F] rounded-lg p-3 text-[#F5EFF1] focus:outline-none focus:border-[#B94B60]">
                         <option value="caesar">Caesar Cipher</option>
                         <option value="vigenere">Vigenere Cipher</option>
                         <option value="aes">AES-256-GCM</option>
@@ -50,37 +48,34 @@
                 </div>
 
                 <div>
-                    <label id="label-key" class="block text-xs text-gray-400 mb-2">
+                    <label id="label-key" class="block text-xs text-[#AA9DA4] mb-2">
                         Kunci (angka pergeseran)
                     </label>
 
-                    <input id="key-crypto" type="text"
-                        placeholder="Contoh: 3"
-                        class="w-full bg-[#12141a] border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-yellow-500"/>
+                    <input id="key-crypto" type="text" placeholder="Contoh: 3"
+                        class="w-full bg-[#141214] border border-[#45343F] rounded-lg p-3 text-[#F5EFF1] focus:outline-none focus:border-[#B94B60]" />
                 </div>
 
                 <button id="btn-proses-crypto"
-                    class="bg-[#dcb059] hover:bg-yellow-500 text-black font-bold py-3 rounded-lg shadow-lg w-full">
+                    class="bg-[#A33D50] hover:bg-[#B94B60] text-[#F5EFF1] font-bold py-3 rounded-lg shadow-lg w-full">
                     Proses Enkripsi
                 </button>
             </div>
 
             <div class="flex flex-col">
-                <label class="block text-xs text-gray-400 mb-2">
+                <label class="block text-xs text-[#AA9DA4] mb-2">
                     Hasil
                 </label>
 
-                <textarea id="hasil-crypto"
-                    placeholder="Hasil akan muncul di sini..."
-                    readonly
-                    class="w-full h-48 bg-[#12141a] border border-gray-700 rounded-lg p-3 text-gray-300 resize-none"></textarea>
+                <textarea id="hasil-crypto" placeholder="Hasil akan muncul di sini..." readonly
+                    class="w-full h-48 bg-[#141214] border border-[#45343F] rounded-lg p-3 text-[#F5EFF1] resize-none"></textarea>
 
-                <p id="status-crypto" class="text-gray-400 text-sm mt-3">
+                <p id="status-crypto" class="text-[#AA9DA4] text-sm mt-3">
                     Hasil proses akan ditampilkan di sini.
                 </p>
 
                 <button id="btn-copy-crypto"
-                    class="mt-4 border border-gray-700 hover:border-yellow-500 text-gray-300 hover:text-yellow-500 py-3 rounded-lg">
+                    class="mt-4 border border-[#45343F] hover:border-[#A33D50] text-[#F5EFF1] hover:text-[#C6A46A] py-3 rounded-lg">
                     Salin Hasil
                 </button>
             </div>

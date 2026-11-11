@@ -1,27 +1,27 @@
-<div class="h-full min-h-full overflow-y-auto p-6 text-white relative">
+<div class="h-full min-h-full overflow-y-auto p-6 text-[#F5EFF1] relative">
     <div class="max-w-5xl mx-auto">
 
         <!-- Header -->
         <div class="mb-8">
-            <p class="text-sm text-amber-400 tracking-[0.25em] uppercase">
+            <p class="text-sm text-[#C6A46A] tracking-[0.25em] uppercase">
                 Classified Document
             </p>
             <h1 class="text-3xl font-bold mt-2">Dossier Tersangka</h1>
-            <p class="text-gray-400 mt-2">
+            <p class="text-[#AA9DA4] mt-2">
                 Berkas rahasia penyelidikan kasus kematian Mr. PS.
             </p>
-            <div class="w-20 h-1 bg-amber-500 rounded-full mt-4"></div>
+            <div class="w-20 h-1 bg-[#A33D50] rounded-full mt-4"></div>
         </div>
 
         <!-- Konten dossier -->
         <div id="dossier-content" class="hidden space-y-6">
-            <div id="info-kasus" class="p-5 rounded-xl bg-gray-800 border border-gray-700">
+            <div id="info-kasus" class="p-5 rounded-xl bg-[#292128] border border-[#45343F]">
             </div>
 
             <div id="daftar-tersangka" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             </div>
 
-            <p class="text-sm text-gray-500 text-center py-4">
+            <p class="text-sm text-[#AA9DA4] text-center py-4">
                 Setiap berkas tersangka menyimpan informasi tersembunyi.
             </p>
         </div>
@@ -30,17 +30,17 @@
     <!-- Modal Password -->
     <div id="modal-password-dossier"
         class="absolute inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-5">
-        
-        <div class="w-full max-w-md p-7 rounded-2xl bg-[#1a1c23]
-            border border-amber-500/30 shadow-2xl">
+
+        <div class="w-full max-w-md p-7 rounded-2xl bg-[#1D191E]
+            border border-[#A33D50]/30 shadow-2xl">
 
             <div class="text-center mb-6">
-                <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/10
+                <div class="w-16 h-16 mx-auto rounded-full bg-[#A33D50]/10
                     flex items-center justify-center text-3xl mb-4">
                     🔒
                 </div>
 
-                <p class="text-xs text-amber-400 tracking-[0.25em] uppercase">
+                <p class="text-xs text-[#C6A46A] tracking-[0.25em] uppercase">
                     Restricted Access
                 </p>
 
@@ -48,30 +48,30 @@
                     Akses Dossier
                 </h2>
 
-                <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+                <p class="text-sm text-[#AA9DA4] mt-3 leading-relaxed">
                     Dokumen ini bersifat rahasia. Masukkan kata kunci
                     untuk mengakses berkas tersangka.
                 </p>
             </div>
 
-            <label for="password-dossier" class="block text-xs text-gray-400 mb-2 uppercase tracking-wider">
+            <label for="password-dossier" class="block text-xs text-[#AA9DA4] mb-2 uppercase tracking-wider">
                 Kata Kunci
             </label>
 
-            <input id="password-dossier" type="password" placeholder="Masukkan kata kunci..." class="w-full p-3.5 rounded-lg bg-gray-900 border
-                    border-gray-700 text-white outline-none
-                    focus:border-amber-500 transition">
+            <input id="password-dossier" type="password" placeholder="Masukkan kata kunci..." class="w-full p-3.5 rounded-lg bg-[#141214] border
+                    border-[#45343F] text-[#F5EFF1] outline-none
+                    focus:border-[#B94B60] transition">
 
-            <button id="btn-buka-dossier" type="button" class="w-full mt-4 p-3.5 rounded-lg bg-amber-600
-                    hover:bg-amber-700 text-white font-semibold
+            <button id="btn-buka-dossier" type="button" class="w-full mt-4 p-3.5 rounded-lg bg-[#A33D50]
+                    hover:bg-[#B94B60] text-[#F5EFF1] font-semibold
                     transition cursor-pointer">
                 Buka Dossier
             </button>
 
-            <p id="status-dossier" class="text-sm text-center mt-4 text-gray-400">
+            <p id="status-dossier" class="text-sm text-center mt-4 text-[#AA9DA4]">
             </p>
 
-            <p class="text-[10px] text-gray-600 text-center mt-5
+            <p class="text-[10px] text-[#857781] text-center mt-5
                 tracking-widest uppercase">
                 Confidential Investigation File
             </p>

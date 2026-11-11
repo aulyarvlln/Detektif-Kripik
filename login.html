@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Detektif Kripik</title>
-  
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
   <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     * {
       margin: 0;
@@ -27,8 +29,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #0d0f12;
-      color: #e8e6e1;
+      background: #141214;
+      color: #F5EFF1;
       font-family: "Segoe UI", sans-serif;
     }
 
@@ -36,8 +38,8 @@
       width: 100%;
       max-width: 1000px;
       min-height: 620px;
-      background: #14161a;
-      border: 1px solid #2b2f36;
+      background: #1D191E;
+      border: 1px solid #45343F;
       display: flex;
       flex-direction: column;
     }
@@ -47,7 +49,7 @@
       display: flex;
       align-items: center;
       padding: 0 24px;
-      border-bottom: 1px solid #2b2f36;
+      border-bottom: 1px solid #45343F;
       font-weight: 700;
       letter-spacing: 1px;
     }
@@ -56,7 +58,7 @@
       margin-left: auto;
       font-size: 12px;
       font-weight: 400;
-      color: #9aa0a6;
+      color: #AA9DA4;
     }
 
     .main {
@@ -74,12 +76,12 @@
     }
 
     .heading p {
-      color: #9aa0a6;
+      color: #AA9DA4;
       font-size: 13px;
     }
 
     .accent {
-      color: #e0a84b;
+      color: #A33D50;
     }
 
     /* KARTU AUTENTIKASI */
@@ -93,8 +95,8 @@
     .card {
       min-height: 320px;
       padding: 20px;
-      background: #1d2026;
-      border: 1px solid #2b2f36;
+      background: #292128;
+      border: 1px solid #45343F;
       border-radius: 10px;
       display: flex;
       flex-direction: column;
@@ -104,27 +106,27 @@
 
     .card.active {
       min-height: 0;
-      border-color: #e0a84b;
-      box-shadow: 0 0 15px rgba(224, 168, 75, 0.08);
+      border-color: #A33D50;
+      box-shadow: 0 0 15px rgba(163, 61, 80, 0.12);
     }
 
     /* NOMOR TAHAPAN */
     .step {
       align-self: flex-start;
-      color: #9aa0a6;
+      color: #AA9DA4;
       font-size: 11px;
       letter-spacing: 1.5px;
     }
 
     .card.active .step {
-      color: #e0a84b;
+      color: #A33D50;
     }
 
     /* IKON */
     .card .card-icon {
       font-size: 90px;
       line-height: 1;
-      color: #e0a84b;
+      color: #A33D50;
       margin: 12px auto;
     }
 
@@ -159,7 +161,7 @@
 
     /* DESKRIPSI */
     .description {
-      color: #9aa0a6;
+      color: #AA9DA4;
       font-size: 12px;
       line-height: 1.7;
       text-align: center;
@@ -176,7 +178,7 @@
 
     label {
       font-size: 12px;
-      color: #c9ccd1;
+      color: #E2D5DB;
       text-align: left;
     }
 
@@ -184,8 +186,8 @@
       width: 100%;
       height: 44px;
       padding: 0 12px;
-      background: #14161a;
-      border: 1px solid #3a3f48;
+      background: #1D191E;
+      border: 1px solid #66545E;
       border-radius: 7px;
       color: #fff;
       font-size: 14px;
@@ -193,7 +195,7 @@
     }
 
     input:focus {
-      border-color: #e0a84b;
+      border-color: #A33D50;
     }
 
     .password-wrap {
@@ -212,7 +214,7 @@
       transform: translateY(-50%);
       border: none;
       background: transparent;
-      color: #9aa0a6;
+      color: #AA9DA4;
       cursor: pointer;
       font-size: 12px;
     }
@@ -222,8 +224,8 @@
       height: 45px;
       border: none;
       border-radius: 7px;
-      background: #e0a84b;
-      color: #14161a;
+      background: #A33D50;
+      color: #F5EFF1;
       font-weight: 700;
       font-size: 14px;
       cursor: pointer;
@@ -231,7 +233,7 @@
     }
 
     .btn:hover {
-      background: #f0bc65;
+      background: #B94B60;
     }
 
     .btn:disabled {
@@ -254,10 +256,10 @@
     /* FOOTER */
     .footer {
       padding: 16px;
-      border-top: 1px solid #2b2f36;
+      border-top: 1px solid #45343F;
       text-align: center;
       font-size: 11px;
-      color: #777e88;
+      color: #857781;
     }
 
     /* RESPONSIVE */
@@ -310,67 +312,68 @@
       </section>
 
       <section class="cards">
-      
+
         <!-- LAPIS 1 -->
         <div class="card">
           <div class="step">01/03</div>
-      
+
           <i class="bi bi-usb-drive-fill card-icon"></i>
-      
+
           <h2>Dongle</h2>
-      
+
           <div class="status">
             <span class="status-icon">✓</span>
             Dongle berhasil diverifikasi
           </div>
         </div>
-      
+
         <!-- LAPIS 2 -->
         <div class="card">
           <div class="step">02/03</div>
-      
+
           <i class="bi bi-fingerprint card-icon"></i>
-      
+
           <h2>Sidik Jari</h2>
-      
+
           <div class="status">
             <span class="status-icon">✓</span>
             Identitas berhasil diverifikasi
           </div>
         </div>
-      
+
         <!-- LAPIS 3 -->
         <div class="card active">
           <div class="step">03/03</div>
 
           <h2>Login Password</h2>
-      
+
           <p class="description">
             Masukkan password untuk melanjutkan
             ke dashboard Detektif Kripik.
           </p>
-      
+
           <form class="login-form" id="loginForm">
-      
+
             <label for="password">Password</label>
-      
+
             <div class="password-wrap">
-              <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password" required>
-      
+              <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password"
+                required>
+
               <button type="button" class="toggle" id="togglePassword">
                 Lihat
               </button>
             </div>
-      
+
             <div class="message" id="message"></div>
-      
+
             <button type="submit" class="btn" id="loginButton">
               Masuk
             </button>
-      
+
           </form>
         </div>
-      
+
       </section>
 
 
@@ -442,5 +445,5 @@
   </script>
 
 </body>
-</html>
 
+</html>
